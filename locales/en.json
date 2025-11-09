@@ -1,0 +1,53 @@
+{
+  "main_menu": {
+    "text": "Hello, {name}! 👋\n\nWelcome to the main menu! Here you can:\n\n🚖 Request a ride — find a nearby driver and start your journey right away.\n📋 My trips — view your previous rides.\n🆘 Help — contact us if you have a question or issue.",
+    "btn": {
+      "order": "🚖 Request a Ride",
+      "my_trip": "📋 My Trips",
+      "help": "🆘 Help"
+    }
+  },
+  "travel_type": {
+    "text": "✈️ Choose your travel type:\n\n🚗 Start a ride now — set your destination and get a driver quickly and safely.\n📦 Send a parcel — deliver your package safely between two locations.",
+    "btn": {
+      "now": "🚗 Start a Ride Now",
+      "post": "📦 Send a Parcel"
+    }
+  },
+  "travel_start": {
+    "text": "📍 Where shall we start your journey?\n\nType or select your city, or send your exact location."
+  },
+  "travel_end": {
+    "text": "📍 Please send your destination or enter one of the selected cities."
+  },
+  "travel_locations": {
+    "send_location": "📍 Send Location",
+    "tashkent": "Tashkent",
+    "andijan": "Andijan",
+    "namangan": "Namangan",
+    "fargona": "Fergana",
+    "qoqon": "Kokand"
+  },
+  "errors": {
+    "location": "❌ Please send a precise location.",
+    "location_not_found": "⚠️ Location not detected.\n\nPlease resend your location or share another nearby place that’s convenient for you.",
+    "not_location_send": "📍 Please send your location or enter one of the selected cities.",
+    "validation_error": "❌ Validation error",
+    "text_required": "📝 Please enter some text.",
+    "text_too_short": "❌ The text is too short.",
+    "text_too_long": "❌ The text is too long.",
+    "invalid_format": "❌ Invalid format.",
+    "phone_required": "📞 Please enter a phone number.",
+    "invalid_phone": "❌ Invalid phone number.",
+    "number_required": "🔢 Please enter a number.",
+    "invalid_number": "❌ Invalid number.",
+    "number_too_small": "❌ The number is too small.",
+    "number_too_large": "❌ The number is too large.",
+    "city_not_found": "❌ City not found.",
+    "unknown_city": "❌ Unknown city.",
+    "invalid_input": "❌ Invalid input."
+  },
+  "btn": {
+    "back": "⬅️ Back"
+  }
+}

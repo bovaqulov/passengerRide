@@ -1,0 +1,53 @@
+{
+  "main_menu": {
+    "text": "Salom, {name}! 👋\n\nAsosiy menyuga xush kelibsiz! Bu yerda siz quyidagi amallarni bajarishingiz mumkin:\n\n🚖 Safar buyurtma qilish — yaqin haydovchini toping va darhol yo‘lga chiqing.\n📋 Mening safarlarim — oldingi safarlaringizni ko‘rib chiqing.\n🆘 Yordam — savolingiz yoki muammo bo‘lsa, shu yerga murojaat qiling.",
+    "btn": {
+      "order": "🚖 Buyurtma berish",
+      "my_trip": "📋 Mening safarlarim",
+      "help": "🆘 Yordam"
+    }
+  },
+  "travel_type": {
+    "text": "✈️ Sayohat turini tanlang:\n\n🚗 Hozir yo‘lga chiqish — manzilingizni belgilang, haydovchilar sizni tez va xavfsiz yetkazishadi.\n📦 Pochta yuborish — pochtangizni ikki manzil orasida ishonchli tarzda yetkazamiz.",
+    "btn": {
+      "now": "🚗 Hozir yo‘lga chiqish",
+      "post": "📦 Pochta yuborish"
+    }
+  },
+  "travel_start": {
+    "text": "📍 Sayohatni qayerdan boshlaymiz?\n\nO‘zingiz turgan shahar nomini yozing, tanlang yoki aniq joylashuvingizni yuboring."
+  },
+  "travel_end": {
+    "text": "📍 Boradigan manzilingizni yuboring yoki tanlangan shaharlardan birini kiriting."
+  },
+  "errors": {
+    "location": "❌ Iltimos, aniq manzil yuboring.",
+    "location_not_found": "⚠️ Manzil aniqlanmadi.\n\nIltimos, joylashuvingizni qayta yuboring yoki o‘zingizga qulay boshqa manzilni yuboring.",
+    "not_location_send": "📍 Iltimos, joylashuvingizni yuboring yoki tanlangan shaharlardan birini kiriting.",
+    "validation_error": "❌ Validatsiya xatosi",
+    "text_required": "📝 Iltimos, matn kiriting",
+    "text_too_short": "❌ Matn juda qisqa",
+    "text_too_long": "❌ Matn juda uzun",
+    "invalid_format": "❌ Noto'g'ri format",
+    "phone_required": "📞 Iltimos, telefon raqam kiriting",
+    "invalid_phone": "❌ Noto'g'ri telefon raqam",
+    "number_required": "🔢 Iltimos, raqam kiriting",
+    "invalid_number": "❌ Noto'g'ri raqam",
+    "number_too_small": "❌ Raqam juda kichik",
+    "number_too_large": "❌ Raqam juda katta",
+    "city_not_found": "❌ Shahar topilmadi",
+    "unknown_city": "❌ Noma'lum shahar",
+    "invalid_input": "❌ Noto'g'ri ma'lumot"
+  },
+  "travel_locations": {
+    "send_location": "📍 Joylashuvni yuborish",
+    "tashkent": "Toshkent",
+    "andijan": "Andijon",
+    "namangan": "Namangan",
+    "fargona": "Farg‘ona",
+    "qoqon": "Qo‘qon"
+  },
+  "btn": {
+    "back": "⬅️ Ortga"
+  }
+}
