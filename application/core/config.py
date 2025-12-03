@@ -77,7 +77,7 @@ class Settings(BaseSettings):
     @property
     def PORT(self) -> int:
         """Get port based on DEBUG mode"""
-        return self.PORT_DEMO if self.DEBUG else self.PORT_PROD
+        return self.PORT_DEMO
 
     @property
     def MAIN_URL(self) -> str:
