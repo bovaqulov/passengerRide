@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     BOT_TOKEN_PROD: str
     AUTH_TOKEN: str
     WEBHOOK_URL_PROD: str
+    HOST_PROD: str
 
 
     HOST_DEMO: str = "0.0.0.0"
@@ -32,7 +33,7 @@ class Settings(BaseSettings):
     SUPPORTED_LANGUAGES: str = "en,uz,ru"
     API_VERSION: str = "api/v1"
     API_HOST: str = "0.0.0.0"
-    API_PORT: str = 8888
+    API_PORT: str = 8000
     PROD_API_HOST: str
 
     # Admin
