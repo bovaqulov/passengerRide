@@ -2,7 +2,7 @@ from typing import Optional, List, Union
 from dataclasses import dataclass
 from telebot.types import (
     InlineKeyboardMarkup, ReplyKeyboardMarkup,
-    InlineKeyboardButton, KeyboardButton, ReplyKeyboardRemove
+    InlineKeyboardButton, KeyboardButton, ReplyKeyboardRemove, WebAppInfo
 )
 from application.core.i18n import t as _
 
@@ -13,8 +13,9 @@ class InlineButton:
     text: str
     callback_data: Optional[str] = None
     url: Optional[str] = None
-    web_app: Optional[str] = None
+    web_app: WebAppInfo = None
     pay: bool = False
+
 
 
 @dataclass
@@ -37,7 +38,7 @@ class SimpleKeyboard:
 
     # ============ INLINE TUGMALAR ============
 
-    def ib(self, text: str, data: str = None, url: str = None) -> 'SimpleKeyboard':
+    def ib(self, text: str, data = None, url: str = None) -> 'SimpleKeyboard':
         """Inline tugma qo'shish"""
         self._current_inline_row.append(InlineButton(text, callback_data=data, url=url))
         return self
@@ -50,7 +51,7 @@ class SimpleKeyboard:
         """Callback data tugma"""
         return self.ib(text, data=data)
 
-    def web_app(self, text: str, web_app_url: str) -> 'SimpleKeyboard':
+    def web_app(self, text: str, web_app_url: WebAppInfo) -> 'SimpleKeyboard':
         """Web app tugma"""
         self._current_inline_row.append(InlineButton(text, web_app=web_app_url))
         return self
@@ -120,7 +121,7 @@ class SimpleKeyboard:
                     buttons.append(InlineKeyboardButton(text, pay=True))
 
             if buttons:
-                markup.row(*buttons)
+                markup.add(*buttons)
 
         return markup
 

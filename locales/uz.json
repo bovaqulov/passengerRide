@@ -20,6 +20,22 @@
   "travel_end": {
     "text": "📍 Boradigan manzilingizni yuboring yoki tanlangan shaharlardan birini kiriting."
   },
+  "trip_details": {
+    "text": "🚗 <b>Sayohat tafsilotlari</b>:\n\n📍 <b>Yo‘nalish:</b> {loc_begin} → {loc_end}\n👤 <b>Yo‘lovchilar:</b> {passenger}\n💰 <b>Tarif:</b> {travel_class}\n💸 <b>Narx:</b> {price} so‘m\n👩 <b>Ayol yo‘lovchi:</b> {has_woman}\n\n✅ Agar hammasi to‘g‘ri bo‘lsa — <b>“Boshlash”</b> tugmasini bosing, haydovchilarimizga xabar beraman. 🚀"
+  },
+  "utils": {
+    "select_language": "🌐 Kerakli tilni tanlang",
+    "my_trips_header": "📋 Sizning safarlaringiz ({count} ta):",
+    "travel_info": "🚗 {number}. Safar\n📍 Dan: {from_location}\n📍 Gacha: {to_location}\n💰 Narx: {price}\n📅 Sana: {date}\n🔢 Kodi: {code}",
+    "no_trips_found": "🤷‍♂️ Hozircha hech qanday safar topilmadi",
+    "more_trips_hidden": "ℹ️ Faqat oxirgi 5 safar ko'rsatilmoqda",
+    "error_loading_trips": "❌ Safarlarni yuklashda xatolik yuz berdi"
+  },
+  "languages": {
+    "uz": "🇺🇿 O‘zbek tili",
+    "ru": "🇷🇺 Русский язык",
+    "en": "🇬🇧 English"
+  },
   "errors": {
     "location": "❌ Iltimos, aniq manzil yuboring.",
     "location_not_found": "⚠️ Manzil aniqlanmadi.\n\nIltimos, joylashuvingizni qayta yuboring yoki o‘zingizga qulay boshqa manzilni yuboring.",
@@ -37,17 +53,60 @@
     "number_too_large": "❌ Raqam juda katta",
     "city_not_found": "❌ Shahar topilmadi",
     "unknown_city": "❌ Noma'lum shahar",
-    "invalid_input": "❌ Noto'g'ri ma'lumot"
+    "invalid_input": "❌ Noto'g'ri ma'lumot",
+    "same_city": "⚠️ Siz kiritgan manzillar juda yaqin yoki bir xil shaharda joylashgan. Iltimos, qaytadan yuboring.",
+    "service_not_available": "😔 Siz yuborgan hududda hozircha xizmat ko‘rsatmaymiz. Noqulaylik uchun uzr!",
+    "send_exact_location": "📍 Iltimos, aniq joylashuvingizni yuboring."
   },
-  "travel_locations": {
-    "send_location": "📍 Joylashuvni yuborish",
-    "tashkent": "Toshkent",
-    "andijan": "Andijon",
-    "namangan": "Namangan",
-    "fargona": "Farg‘ona",
-    "qoqon": "Qo‘qon"
+  "ask_phone_number": {
+    "text": "📱 Iltimos, aloqa uchun telefon raqamingizni qoldiring!",
+    "btn": "📲 Telefon raqamingizni yuborish"
+  },
+  "send_location": "📍 Joylashuvni yuborish",
+  "travel_searching_drivers": {
+    "text": "🚘 Yaqin atrofdagi haydovchilar qidirilmoqda ..."
   },
   "btn": {
-    "back": "⬅️ Ortga"
-  }
+    "back": "⬅️ Ortga",
+    "economy": "Ekonom",
+    "standard": "Standard",
+    "business": "Biznes",
+    "start": "🚀 Boshlash",
+    "action_cancel": "❌ Bekor qilish",
+    "restart": "🔄 Qayta boshlash"
+  },
+  "trip_canceled": {
+    "text": "❌ Sayohat bekor qilindi.\nQayta boshlashni xohlaysizmi?"
+  },
+  "parcel_destination": {
+    "text": "📦 Pochta chiqarib yuboriladigan manzilni tanlang!"
+  },
+  "parcel_pickup": {
+    "text": "📦 Pochtani qabul qilish manzilini tanlang!"
+  },
+  "delivery_price_confirm": {
+    "text": "💰 Yetkazib berish narxi: {price} so‘m\n\n▶️ Boshlash tugmasini bosing, biz sizga haydovchini yuboramiz!"
+  },
+  "parcel_fast_pickup": {
+    "text": "⏱ Qisqa vaqt ichida pochtani olib ketish uchun biz sizga avtomobil yuboramiz."
+  },
+  "order_canceled": {
+    "text": "❌ Bekor qilindi.\nQayta buyurtma qilishni xohlaysizmi?"
+  },
+  "passenger_account": "👥 Yo‘lovchilar hisobi",
+  "female_passenger": "👩 Ayol yo‘lovchi",
+  "yes": "👍 Bor",
+  "no": "❌ Yo‘q",
+  "taxi_types": "🚖 Taksi turlari",
+  "location_request": "Sizni topish uchun aniq joylashuvingizni yuboring!",
+  "contact_driver": "📞 Haydovchi bilan aloqa",
+  "driver_found_contact": "🚗 <b>Haydovchi topildi!</b> 🎉\n\n👤 <b>Ismi:</b> {name}\n🚙 <b>Avtomobil rusumi:</b> {car_model}\n🔢 <b>Avtomobil raqami:</b> {car_number}\n\n⏳ Iltimos, haydovchi sizga aloqaga chiqishini kuting 📞",
+  "active_order": "Sizda faol buyurtmalar bor. Iltimos, ularni yakunlang.",
+  "find_driver": "<b>✅ Haydovchi topildi</b>\n\n<b>Haydovchi:</b> {full_name}\n<b>Mashina:</b> {car_model} | {car_number}\n<b>Telefon:</b> {phone}\n<b>Reyting:</b> {rating}\n\n<b>Safar:</b> {from_city} → {to_city}\n<b>Yo'lovchi:</b> {passenger}\n<b>Narx:</b> {price} soʻm\n<b>ID:</b> #{order_id}",
+  "driver_arrived": "🚗 Haydovchi yetib keldi,\n\n🚘 Avtomobilga o'tirganingizdan keyin \"👉 Men avtomobildaman\" tugmasini bosing",
+  "in_car": "🚘 Men avtomobildaman",
+  "safe_trip": "🚗 Safaringiz bexatar bo‘lsin!\n\nSafar tugaganda fikr bildirishni unutmang, bu biz uchun muhim ✅",
+   "rate_trip": "🙏 Xizmatlarimizdan foydalanganingiz uchun rahmat!\n⭐ Sayohatni baholang, bu sayohatlarni yanada yaxshilanishiga yordam beradi"
+
 }
+

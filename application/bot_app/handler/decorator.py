@@ -9,7 +9,9 @@ from telebot.handler_backends import State, StatesGroup
 from application.core.bot import bot
 from application.core.i18n import t
 from application.core.log import logger
-from application.services.user_service import TelegramUser
+from application.services.city_service import CityServiceAPI
+from application.services.passenger_service import PassengerServiceAPI, PassengerGetService
+from application.services.user_service import TelegramUser, UserService
 
 # Admin IDs - environment variables dan olish kerak
 ADMINS: List[int] = []
@@ -21,6 +23,17 @@ class BotStates(StatesGroup):
     """Bot davlatlari - TeleBot native states"""
     from_location: State = State()
     to_location: State = State()
+    details: State = State()
+
+class BotPostStates(StatesGroup):
+    from_location: State = State()
+    to_location: State = State()
+    confirm: State = State()
+
+
+
+class BotNumber(StatesGroup):
+    contact: State = State()
 
 # ==================== PERFORMANCE DECORATORS ====================
 
@@ -98,27 +111,43 @@ class UltraHandler:
     def __init__(self, message: Union[Message, CallbackQuery], context: Optional[StateContext] = None):
         self.msg = message
         self.context = context
-        self._user_cache: Optional[TelegramUser] = None
+        self._user_cache: Optional[UserService] = None
         self._lang_cache: Optional[str] = None
 
         self.user_id = message.from_user.id
         self.chat_id = message.chat.id if isinstance(message, Message) else message.message.chat.id
 
-    @async_lru_cache(maxsize=256)
-    async def get_user(self) -> TelegramUser:
+    async def get_user(self) -> UserService:
         if not self._user_cache:
-            self._user_cache = await TelegramUser.from_user_id(self.user_id)
+            self._user_cache = await TelegramUser().get_user(self.user_id)
         return self._user_cache
 
+    async def get_passenger(self) -> Optional[PassengerGetService]:
+        """Get passenger or return None if not exists"""
+        try:
+            passenger_api = PassengerServiceAPI()
+            return await passenger_api.get_by_user(self.user_id)
+        except Exception as e:
+            logger.error(f"Error getting passenger: {e}")
+            return None
+
     async def lang(self) -> str:
-        if not self._lang_cache:
-            user = await self.get_user()
-            self._lang_cache = user.language or "en"
-        return self._lang_cache
+        user = await self.get_user()
+        return user.language or "en"
+
 
     async def _(self, key: str, **kwargs) -> str:
         lang = await self.lang()
         return t(key, lang, **kwargs)
+
+    @error_handler(send_to_user=False)
+    async def send_verification_code(self, code: str) -> str:
+        return await bot.verify_user(code)
+
+    @error_handler(send_to_user=False)
+    async def get_city_name(self, city, lang):
+        city_api = CityServiceAPI()
+        return await city_api.get_translate(city, lang)
 
     @error_handler(send_to_user=False)
     async def send(
@@ -378,6 +407,7 @@ class HandlerMaster:
         for state, func in cls._states.items():
 
             @bot.message_handler(content_types=["location", "text"], state=state)
+            @bot.callback_query_handler(func=lambda call: call.data, state=state)
             @error_handler()
             async def state_msg_handler(message: Message, state: StateContext, f=func):
                 try:

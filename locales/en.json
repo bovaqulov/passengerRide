@@ -20,13 +20,14 @@
   "travel_end": {
     "text": "📍 Please send your destination or enter one of the selected cities."
   },
-  "travel_locations": {
-    "send_location": "📍 Send Location",
-    "tashkent": "Tashkent",
-    "andijan": "Andijan",
-    "namangan": "Namangan",
-    "fargona": "Fergana",
-    "qoqon": "Kokand"
+  "trip_details": {
+    "text": "🚗 <b>Trip details</b>:\n\n📍 <b>Route:</b> {loc_begin} → {loc_end}\n👤 <b>Passengers:</b> {passenger}\n💰 <b>Class:</b> {travel_class}\n💸 <b>Price:</b> {price} UZS\n👩 <b>Female passenger:</b> {has_woman}\n\n✅ If everything looks correct — press <b>“Start”</b> and I’ll notify our drivers. 🚀",
+    "btn": {
+      "free_car": "🚖 Free car"
+    }
+  },
+  "travel_searching_drivers": {
+    "text": "🚘 Searching for nearby drivers..."
   },
   "errors": {
     "location": "❌ Please send a precise location.",
@@ -45,9 +46,71 @@
     "number_too_large": "❌ The number is too large.",
     "city_not_found": "❌ City not found.",
     "unknown_city": "❌ Unknown city.",
-    "invalid_input": "❌ Invalid input."
+    "invalid_input": "❌ Invalid input.",
+    "same_city": "⚠️ The locations you entered are too close or in the same city. Please send them again.",
+    "service_not_available": "😔 We do not provide service in the area you sent yet. Sorry for the inconvenience!",
+    "send_exact_location": "📍 Please send your exact location."
+  },
+  "utils": {
+    "select_language": "🌐 Select your language",
+    "my_trips_header": "📋 Your trips ({count}):",
+    "travel_info": "🚗 {number}. Trip\n📍 From: {from_location}\n📍 To: {to_location}\n💰 Price: {price}\n📅 Date: {date}\n🔢 Code: {code}",
+    "no_trips_found": "🤷‍♂️ No trips found yet",
+    "more_trips_hidden": "ℹ️ Only the last 5 trips are shown",
+    "error_loading_trips": "❌ Error loading trips"
+  },
+  "languages": {
+    "uz": "🇺🇿 O‘zbek tili",
+    "ru": "🇷🇺 Русский язык",
+    "en": "🇬🇧 English"
+  },
+  "ask_phone_number": {
+    "text": "📱 Please leave your phone number for contact!",
+    "btn": "📲 Send your phone number"
   },
   "btn": {
-    "back": "⬅️ Back"
-  }
+    "back": "⬅️ Back",
+    "economy": "Economy",
+    "standard": "Standard",
+    "business": "Business",
+    "start": "🚀 Start",
+    "action_cancel": "❌ Cancel",
+    "restart": "🔄 Restart"
+  },
+  "trip_canceled": {
+    "text": "❌ The trip has been canceled.\nWould you like to start again?"
+  },
+  "parcel_destination": {
+    "text": "📦 Select the destination where the parcel will be delivered!"
+  },
+  "parcel_pickup": {
+    "text": "📦 Select the address where the parcel will be received!"
+  },
+  "delivery_price_confirm": {
+    "text": "💰 Delivery price: {price} UZS\n\n▶️ Press Start and we will send a driver to you!"
+  },
+  "parcel_fast_pickup": {
+    "text": "⏱ We will send a car shortly to pick up your parcel."
+  },
+  "order_canceled": {
+    "text": "❌ Canceled.\nWould you like to place a new order?"
+  },
+  "passenger_account": "👥 Passenger account",
+  "female_passenger": "👩 Female passenger",
+  "yes": "👍 Yes",
+  "no": "❌ No",
+  "taxi_types": "🚖 Types of taxi",
+  "location_request": "Send your exact location so we can find you!",
+  "send_location": "📍 Send location",
+  "driver_found_contact": "🚗 <b>Driver Found!</b> 🎉\n\n👤 <b>Name:</b> {name}\n🚙 <b>Car Model:</b> {car_model}\n🔢 <b>Car Number:</b> {car_number}\n\n⏳ Please wait for the driver to contact you 📞",
+  "contact_driver": "📞 Contact Driver",
+  "active_order": "You have active orders. Please complete them.",
+   "driver_arrived": "🚗 The driver has arrived,\n\n🚘 After getting into the car, please press the \"👉 I'm in the car\" button",
+ "find_driver": "<b>✅ Driver found</b>\n\n<b>Driver:</b> {full_name}\n<b>Car:</b> {car_model} | {car_number}\n<b>Phone:</b> {phone}\n<b>Rating:</b> {rating}\n\n<b>Trip:</b> {from_city} → {to_city}\n<b>Passenger:</b> {passenger}\n<b>Price:</b> {price} UZS\n<b>ID:</b> #{order_id}",
+    "in_car": "🚘 I'm in the car",
+
+  "safe_trip": "🚗 Have a safe trip!\n\nDon't forget to leave feedback after your trip, it's important for us ✅",
+    "rate_trip": "🙏 Thank you for using our services!\n⭐ Please rate your trip, it helps us improve future journeys"
+
 }
+

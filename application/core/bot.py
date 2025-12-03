@@ -19,5 +19,6 @@ bot = AsyncTeleBot(
 
 logger.info("🤖 Bot instance created")
 
+
 bot.add_custom_filter(asyncio_filters.StateFilter(bot))
 bot.setup_middleware(StateMiddleware(bot))

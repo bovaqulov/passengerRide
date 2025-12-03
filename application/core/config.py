@@ -26,12 +26,18 @@ class Settings(BaseSettings):
     LOCALES_PATH: str = "./locales"
     DEFAULT_LANGUAGE: str = "en"
     SUPPORTED_LANGUAGES: str = "en,uz,ru"
+    API_VERSION: str = "api/v1"
+    AUTH_TOKEN: str
+    API_HOST: str
+    API_PORT: str
 
     # Admin
     ADMIN_IDS: str = ""
 
-    WEBHOOK_URL_DEMO: str = "http://127.0.0.1:8000"
-    WEBHOOK_URL_PROD: str = "http://127.0.0.1:8000"
+    WEBHOOK_URL_DEMO: str = "http://127.0.0.1:8888"
+    WEBHOOK_URL_PROD: str = "http://127.0.0.1:8888"
+
+
 
     @property
     def BOT_TOKEN(self) -> str:
@@ -69,6 +75,11 @@ class Settings(BaseSettings):
     def PORT(self):
         """Get port based on DEBUG mode"""
         return self.PORT_DEMO if self.DEBUG else self.PORT_PROD
+
+    @property
+    def  MAIN_URL(self):
+        """Get main url based on DEBUG mode"""
+        return f"http://{self.API_HOST}:{self.API_PORT}"
 
     model_config = SettingsConfigDict(
         env_file=".env",

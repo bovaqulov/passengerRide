@@ -1,7 +1,6 @@
 # application/services/admin_service.py
 
 from typing import Dict
-from application.services.user_service import get_user_count
 from application.core.log import logger
 
 

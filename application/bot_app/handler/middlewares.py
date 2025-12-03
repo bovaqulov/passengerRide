@@ -4,7 +4,6 @@ from typing import Dict, Any, Union
 
 from telebot.asyncio_handler_backends import BaseMiddleware, CancelUpdate
 from telebot.types import Message, CallbackQuery
-
 from application.core import bot, logger
 from application.services import TelegramUser
 
@@ -94,18 +93,8 @@ class AllInOneMiddleware(BaseMiddleware):
         try:
             user_id = message.from_user.id
 
-            # Auth check
-            user = await TelegramUser.from_user_id(user_id)
-            if not user:
-                await bot.send_message(message.chat.id, "❌ User not found.")
-                return False
-
-            if not user.is_active:
-                await bot.send_message(message.chat.id, "🚫 Account blocked.")
-                return False
-
             # Ban check
-            if await TelegramUser.is_user_banned(user_id):
+            if await TelegramUser().is_ban_user(user_id):
                 await bot.send_message(message.chat.id, "🚫 You are banned.")
                 return False
 

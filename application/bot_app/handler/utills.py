@@ -83,14 +83,14 @@ async def aget_place_from_coords(lat: float, lon: float) -> Dict[str, Any]:
         }
 
 
-async def aget_coords_from_place(place_name: str, country_codes: str = "uz", limit: int = 1) -> List[
+async def aget_coords_from_place(place_name: str, accept_language: str = "uz", limit: int = 1) -> List[
     Dict[str, Any]]:
     """
     Shahar/tuman nomi orqali koordinatalarni olish
 
     Args:
         place_name: Shahar/tuman nomi (masalan: "Toshkent", "Samarqand")
-        country_codes: Qidirish davlat kodlari (masalan: ["uz", "kz"])
+        accept_language: Qidirish davlat kodlari (masalan: ["uz", "kz"])
         limit: Natijalar soni
 
     Returns:
@@ -101,12 +101,9 @@ async def aget_coords_from_place(place_name: str, country_codes: str = "uz", lim
         "format": "jsonv2",
         "addressdetails": 1,
         "limit": limit,
-        "accept-language": "uz",
+        "countrycodes": "uz",
+        "accept-language": accept_language,
     }
-
-    # Davlat kodlarini qo'shish
-    if country_codes:
-        params["countrycodes"] = country_codes
 
     headers = {"User-Agent": USER_AGENT}
 
@@ -144,5 +141,3 @@ async def aget_coords_from_place(place_name: str, country_codes: str = "uz", lim
             "lon": None,
             "error": str(e)
         }]
-
-

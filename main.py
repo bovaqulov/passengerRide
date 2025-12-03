@@ -7,5 +7,5 @@ if __name__ == "__main__":
         "application.core.app:app",
         host=settings.HOST,
         port=settings.PORT,
-        reload=settings.DEBUG,
+        reload=settings.DEBUG
     )

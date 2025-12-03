@@ -15,8 +15,9 @@ from .decorator import (
 
 # Import all handler modules
 from .commands import *
-from .callbacks import *
+from .messages import *
 from .states import *
+from .callbacks import *
 from .middlewares import *
 
 # Register all handlers
