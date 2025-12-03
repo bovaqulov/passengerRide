@@ -80,27 +80,42 @@ async def back_callback(call: CallbackQuery, state):
         return await order_callback(call, state)
 
 
+from application.services.order_service import order_service
+
 
 @cb("now")
 async def now_callback(call: Union[CallbackQuery, Message], state: StateContext):
     h = UltraHandler(call, state)
     lang = await h.lang()
 
-    orders = await OrderServiceAPI().get_by_id(call.from_user.id)
+    # Use the shared service instance
+    orders = await order_service.get_by_id(call.from_user.id)
 
-    for i in orders:
-        if i.get("status") not in ["created", "assigned", "arrived", "started"]:
-            await h.set_state(stat=BotStates.from_location)
-            return await h.edit(
-                "travel_start.text",
-                reply_markup=await start_inl(lang)
-                )
-        else:
-            return await h.edit(
-                "active_order",
-                reply_markup=back_inl(lang)
-            )
+    if not orders:
+        await h.set_state(stat=BotStates.from_location)
+        return await h.edit(
+            "travel_start.text",
+            reply_markup=await start_inl(lang)
+        )
 
+    # Check if any order has active status
+    active_statuses = ["created", "assigned", "arrived", "started"]
+    has_active_order = any(
+        order.get("status") in active_statuses
+        for order in orders
+    )
+
+    if has_active_order:
+        return await h.edit(
+            "active_order",
+            reply_markup=back_inl(lang)
+        )
+    else:
+        await h.set_state(stat=BotStates.from_location)
+        return await h.edit(
+            "travel_start.text",
+            reply_markup=await start_inl(lang)
+        )
 
 @cb("post")
 async def post_callback(call: Union[CallbackQuery, Message], state: StateContext):
