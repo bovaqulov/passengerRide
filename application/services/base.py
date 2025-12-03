@@ -1,9 +1,12 @@
-from typing import Optional, Dict, Any
+"""
+Base service with proper HTTP session management
+"""
+from typing import Optional, Dict, Any, Union
 import aiohttp
-from contextlib import asynccontextmanager
 
 from application.core import logger
 from application.core.config import settings
+from .http_client import GlobalHTTPClient
 
 
 class BaseService:
@@ -12,65 +15,78 @@ class BaseService:
     def __init__(self):
         self.base_url = f"{settings.MAIN_URL}/{settings.API_VERSION}"
         self.token = settings.AUTH_TOKEN
-        self.session: Optional[aiohttp.ClientSession] = None
-        self._session_lock = None  # For lazy initialization
+        self.http_client = GlobalHTTPClient()
 
-    async def ensure_session(self):
-        """Ensure session exists (lazy initialization)"""
-        if self.session is None or self.session.closed:
-            headers = {"Content-Type": "application/json"}
-            if self.token:
-                headers["Authorization"] = f"Token {self.token}"
+    async def ensure_headers(self, headers: Optional[Dict] = None) -> Dict:
+        """Ensure headers include authorization if token exists"""
+        headers = headers or {}
+        if "Content-Type" not in headers:
+            headers["Content-Type"] = "application/json"
 
-            self.session = aiohttp.ClientSession(
-                headers=headers,
-                connector=aiohttp.TCPConnector(limit=100, limit_per_host=20)
-            )
+        if self.token and "Authorization" not in headers:
+            headers["Authorization"] = f"Token {self.token}"
 
-    async def close(self):
-        """Close the session"""
-        if self.session and not self.session.closed:
-            await self.session.close()
-            self.session = None
+        return headers
 
-    async def _request(self, method: str, endpoint: str, **kwargs) -> Dict[str, Any]:
-        """Make async HTTP request"""
-        await self.ensure_session()
-
+    async def _request(
+            self,
+            method: str,
+            endpoint: str,
+            **kwargs
+    ) -> Dict[str, Any]:
+        """Make async HTTP request with proper resource cleanup"""
         url = f"{self.base_url}{endpoint}"
 
+        # Ensure headers
+        if "headers" in kwargs:
+            kwargs["headers"] = await self.ensure_headers(kwargs["headers"])
+        else:
+            kwargs["headers"] = await self.ensure_headers()
+
         try:
-            # Don't use async with for the request - just make the request
-            response = await self.session.request(method, url, **kwargs)
+            # Use context manager to ensure response is properly closed
+            async with self.http_client.request(method, url, **kwargs) as response:
 
-            content_type = response.headers.get("Content-Type", "").lower()
+                content_type = response.headers.get("Content-Type", "").lower()
 
-            if response.status == 204:
-                return {}
+                # Handle 204 No Content
+                if response.status == 204:
+                    return {}
 
-            if "text/html" in content_type:
-                text = await response.text()
-                logger.warning(f"HTML response for {url}: {text[:200]}")
-                return {"error": f"Unexpected HTML ({response.status})"}
+                # Handle HTML responses (unexpected)
+                if "text/html" in content_type:
+                    text = await response.text()
+                    logger.warning(f"HTML response for {url}: {text[:200]}")
+                    return {"error": f"Unexpected HTML ({response.status})"}
 
-            try:
-                data = await response.json()
-            except Exception:
-                text = await response.text()
-                logger.warning(f"Non-JSON response: {text[:200]}")
-                return {"error": "Non-JSON response"}
+                # Try to parse JSON
+                try:
+                    data = await response.json()
+                except aiohttp.ContentTypeError:
+                    text = await response.text()
+                    logger.warning(f"Non-JSON response for {url}: {text[:200]}")
+                    return {"error": "Non-JSON response"}
+                except Exception as e:
+                    logger.error(f"Error parsing JSON from {url}: {e}")
+                    return {"error": f"JSON parse error: {e}"}
 
-            if not 200 <= response.status < 300:
-                msg = data.get("detail") or data.get("error") or f"HTTP {response.status}"
-                raise Exception(f"API Error: {msg}")
+                # Check for HTTP errors
+                if not 200 <= response.status < 300:
+                    error_msg = (
+                            data.get("detail") or
+                            data.get("error") or
+                            data.get("message") or
+                            f"HTTP {response.status}"
+                    )
+                    logger.error(f"API error {response.status} from {url}: {error_msg}")
+                    raise Exception(f"API Error: {error_msg}")
 
-            return data
+                return data
 
         except aiohttp.ClientError as e:
+            logger.error(f"Network error for {url}: {e}")
             raise Exception(f"Network error: {e}")
         except Exception as e:
-            raise Exception(f"Request error: {e}")
-        finally:
-            # Always close the response to free connection
-            if 'response' in locals():
-                response.close()
+            logger.error(f"Request error for {url}: {e}")
+            raise
+
