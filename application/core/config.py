@@ -9,17 +9,21 @@ class Settings(BaseSettings):
     """Application settings with environment variables"""
 
     # App settings
-    DEBUG: bool = True
+    DEBUG: bool
+    REDIS_PUBLIC_URL: str
+    BOT_TOKEN_PROD: str
+    AUTH_TOKEN: str
+    WEBHOOK_URL_PROD: str
+
+
     HOST_DEMO: str = "0.0.0.0"
-    PORT_DEMO: int = 8000
+    PORT_DEMO: int = 8888
 
     # Bot tokens
-    BOT_TOKEN_DEMO: str
-    BOT_TOKEN_PROD: str
+    BOT_TOKEN_DEMO: str = "8448377050:AAH5mpmRq4LARRfg6-c-zSiUzMCXcU5tiVo"
 
     # Redis
     REDIS_URL_DEMO: str = "redis://localhost:6379/0"
-    REDIS_URL_PROD: str = "redis://localhost:6379/1"
     REDIS_MAX_CONNECTIONS: int = 10
 
     # Localization
@@ -27,15 +31,14 @@ class Settings(BaseSettings):
     DEFAULT_LANGUAGE: str = "en"
     SUPPORTED_LANGUAGES: str = "en,uz,ru"
     API_VERSION: str = "api/v1"
-    AUTH_TOKEN: str
-    API_HOST: str
-    API_PORT: str
+    API_HOST: str = "0.0.0.0"
+    API_PORT: str = 8888
+    PROD_API_HOST: str
 
     # Admin
     ADMIN_IDS: str = ""
 
     WEBHOOK_URL_DEMO: str = "http://127.0.0.1:8888"
-    WEBHOOK_URL_PROD: str = "http://127.0.0.1:8888"
 
 
 
@@ -47,7 +50,7 @@ class Settings(BaseSettings):
     @property
     def REDIS_URL(self) -> str:
         """Get Redis URL based on DEBUG mode"""
-        return self.REDIS_URL_DEMO if self.DEBUG else self.REDIS_URL_PROD
+        return self.REDIS_URL_DEMO if self.DEBUG else self.REDIS_PUBLIC_URL
 
     @property
     def SUPPORTED_LANGS(self) -> List[str]:
@@ -79,7 +82,7 @@ class Settings(BaseSettings):
     @property
     def  MAIN_URL(self):
         """Get main url based on DEBUG mode"""
-        return f"http://{self.API_HOST}:{self.API_PORT}"
+        return f"http://{self.API_HOST}:{self.API_PORT}" if self.DEBUG else self.PROD_API_HOST
 
     model_config = SettingsConfigDict(
         env_file=".env",
