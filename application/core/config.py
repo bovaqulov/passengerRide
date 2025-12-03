@@ -72,7 +72,7 @@ class Settings(BaseSettings):
     @property
     def HOST(self) -> str:
         """Get host based on DEBUG mode"""
-        return self.HOST_DEMO if self.DEBUG else self.HOST_PROD
+        return self.HOST_DEMO
 
     @property
     def PORT(self) -> int:
