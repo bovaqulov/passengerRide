@@ -80,13 +80,12 @@ async def back_callback(call: CallbackQuery, state):
         return await order_callback(call, state)
 
 
-from application.services.order_service import order_service
-
-
 @cb("now")
 async def now_callback(call: Union[CallbackQuery, Message], state: StateContext):
     h = UltraHandler(call, state)
     lang = await h.lang()
+
+    order_service = OrderServiceAPI()
 
     # Use the shared service instance
     orders = await order_service.get_by_id(call.from_user.id)
