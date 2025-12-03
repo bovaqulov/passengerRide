@@ -152,7 +152,6 @@ async def details_state_handler(call: CallbackQuery, state: StateContext):
         travel_class = data.get("travel_class", "standard")
         passenger = data.get("passenger", 1)
         has_woman = data.get("has_woman", False)
-        price = data.get("price", 0)
 
     action = call.data.split(":")
 
@@ -161,6 +160,9 @@ async def details_state_handler(call: CallbackQuery, state: StateContext):
         from .callbacks import now_callback
         return await now_callback(call, state)
     elif action[0] == "details_start":
+        base_price = calculate_distance(from_location.get("city"), to_location.get("city"), travel_class)
+        total_price = base_price * passenger
+        data.update({"price": total_price})
         return await confirm_order(call, state, data)
     elif action[0] == "passenger":
         passenger = int(action[1])
