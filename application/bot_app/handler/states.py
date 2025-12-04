@@ -117,10 +117,10 @@ async def to_location_state_handler(call: [CallbackQuery, Message], state: State
 
 def calculate_distance(shahar1, shahar2, tur="economy"):
     CITY_PRICES = {
-        "qoqon": {"distance": 230, "economy": 130000, "standard": 200000, "business": 230000},
-        "fargona": {"distance": 305, "economy": 180000, "standard": 250000, "business": 270000},
-        "namangan": {"distance": 281, "economy": 170000, "standard": 240000, "business": 260000},
-        "andijon": {"distance": 345, "economy": 200000, "standard": 270000, "business": 290000}
+        "qoqon": {"distance": 230, "economy": 130000, "standard": 200000, "comfort": 230000},
+        "fargona": {"distance": 305, "economy": 180000, "standard": 250000, "comfort": 270000},
+        "namangan": {"distance": 281, "economy": 170000, "standard": 240000, "comfort": 260000},
+        "andijon": {"distance": 345, "economy": 200000, "standard": 270000, "comfort": 290000}
     }
     # Toshkentdan boshqa shaharga
     if shahar1 == "tashkent" and shahar2 in CITY_PRICES:

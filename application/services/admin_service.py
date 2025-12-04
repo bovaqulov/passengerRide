@@ -12,7 +12,7 @@ async def get_stats() -> Dict:
         # Add more stats as needed
         stats = {
             'total_users': total_users,
-            'total_rides': 0,  # Implement based on your ride storage
+            'total_rides': 0, # Implement based on your ride storage
             'revenue': 0.0,  # Implement based on your payment system
             'active_today': 0  # Implement based on activity tracking
         }
@@ -27,5 +27,3 @@ async def get_stats() -> Dict:
             'revenue': 0.0,
             'active_today': 0
         }
-
-
