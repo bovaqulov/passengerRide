@@ -76,7 +76,7 @@ def details_inl(
     keyboard.data(text, f"has_woman:{not has_woman}").row()
     keyboard.row()
 
-    for car_class in ["economy", "standard", "business"]:
+    for car_class in ["economy", "standard", "comfort"]:
         checked = check if travel_class == car_class else ""
         text = f"{t(f'btn.{car_class}', lang)} {checked}"
         keyboard.data(text, f"travel_class:{car_class}")

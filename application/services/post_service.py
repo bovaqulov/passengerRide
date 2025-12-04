@@ -10,7 +10,7 @@ class PassengerPost:
     from_location: str
     to_location: str
     price: int
-    status: str = "CREATED"
+    status: str = "created"
     id: Optional[int] = None
     created_at: Optional[str] = None
     updated_at: Optional[str] = None
