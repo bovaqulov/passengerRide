@@ -1,64 +1,45 @@
 {
-  "id": 81,
-  "user": 1230394567,
-  "creator": {
-    "id": 3,
-    "telegram_id": 1230394567,
-    "full_name": "ℳ𝓊𝒽𝒶𝓂𝓂𝒶𝒹 𝒜𝓁𝒾 𓅓",
-    "total_rides": 0,
-    "phone": "998330667378",
-    "rating": 5,
-    "created_at": "2025-11-30T22:46:36.096617Z",
-    "updated_at": "2025-11-30T22:46:36.096645Z"
-  },
-  "driver": 4,
-  "driver_details": {
-    "id": 4,
-    "cars": [
-      {
-        "id": 4,
-        "car_number": "30A123DB",
-        "car_model": "Spark",
-        "car_color": "oq",
-        "created_at": "2025-11-29T12:38:56.533617Z",
-        "updated_at": "2025-12-02T12:32:49.046522Z"
-      }
-    ],
-    "status_display": "Online",
-    "created_at": "2025-11-29T12:38:56.532647Z",
-    "updated_at": "2025-12-02T13:33:52.423292Z",
-    "telegram_id": 1230394567,
-    "full_name": "Muhammad Ali",
-    "total_rides": 0,
-    "phone": "+998 33 066-73-78",
-    "rating": 5,
-    "from_location": "qoqon",
-    "to_location": "tashkent",
-    "status": "online",
-    "amount": 3000000
-  },
-  "status": "assigned",
-  "order_type": "travel",
-  "content_object": {
-    "type": "passengertravel",
-    "id": 76,
-    "from_location": {
-      "city": "qoqon",
-      "location": null
+  'is_in_city': False,
+  'address_info': {
+    'source': 'nominatim',
+    'display_name': "Bandi Yeshon ko'chasi, Qoʻqon shahri, Farg'ona Viloyati, 150700, Oʻzbekiston",
+    'mahalla': None,
+    'shahar_tuman': 'Qoʻqon shahri',
+    'viloyat': "Farg'ona Viloyati",
+    'full_address': "Qoʻqon shahri, Farg'ona Viloyati",
+    'raw': {
+      'place_id': 199360702,
+      'licence': 'Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright',
+      'osm_type': 'way',
+      'osm_id': 27729377,
+      'lat': '40.5238196',
+      'lon': '70.9329228',
+      'category': 'highway',
+      'type': 'residential',
+      'place_rank': 26,
+      'importance': 0.05338945525291825,
+      'addresstype': 'road',
+      'name': "Bandi Yeshon ko'chasi",
+      'display_name': "Bandi Yeshon ko'chasi, Qoʻqon shahri, Farg'ona Viloyati, 150700, Oʻzbekiston",
+      'address': {
+        'road': "Bandi Yeshon ko'chasi",
+        'city': 'Qoʻqon shahri',
+        'state': "Farg'ona Viloyati",
+        'ISO3166-2-lvl4': 'UZ-FA',
+        'postcode': '150700',
+        'country': 'Oʻzbekiston',
+        'country_code': 'uz'
+      },
+      'boundingbox': [
+        '40.5234624',
+        '40.5300914',
+        '70.9325999',
+        '70.9358872'
+      ]
     },
-    "to_location": {
-      "city": "tashkent",
-      "location": null
-    },
-    "travel_class": "standard",
-    "passenger": 1,
-    "has_woman": true,
-    "price": "200000",
-    "created_at": "2025-12-02T13:34:28.824896+00:00"
+    'lat': 40.524194,
+    'lon': 70.932915
   },
-  "content_type_name": "passengertravel",
-  "created_at": "2025-12-02T13:34:28.826689+00:00",
-  "updated_at": "2025-12-02T13:34:33.111411+00:00",
-  "created_at_iso": "2025-12-02T13:34:28.826689+00:00",
-  "updated_at_iso": "2025-12-02T13:34:33.111411+00:00"
+  'message': 'Koordinatalar hech qanday shahar hududida emas va yaqin shaharlar topilmadi',
+  'match_type': 'none'
 }

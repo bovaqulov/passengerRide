@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     REDIS_URL_DEMO: str = "redis://localhost:6379/0"
 
     # Webhook
-    WEBHOOK_URL_DEMO: str = "e5f159555443.ngrok-free.app"
+    WEBHOOK_URL_DEMO: str = "123d221b60e0.ngrok-free.app"
 
     # API settings
     API_HOST: str = "0.0.0.0"
