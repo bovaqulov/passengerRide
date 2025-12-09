@@ -103,6 +103,7 @@ async def to_location_state_handler(call: [CallbackQuery, Message], state: State
         "travel_class": "standard",
         "passenger": 1,
         "has_woman": False})
+
     total_price = await calculate_distance(loc_begin.get("city"), to_location.get("city"), tur="standard")
     await h.delete()
     await h.send("trip_details.text",
@@ -161,7 +162,7 @@ async def details_state_handler(call: CallbackQuery, state: StateContext):
         return await now_callback(call, state)
     elif action[0] == "details_start":
         base_price = await calculate_distance(from_location.get("city"), to_location.get("city"), travel_class)
-        total_price = base_price * passenger
+        total_price = int(base_price) * passenger
         data.update({"price": total_price})
         return await confirm_order(call, state, data)
     elif action[0] == "passenger":
@@ -173,7 +174,7 @@ async def details_state_handler(call: CallbackQuery, state: StateContext):
 
     # Calculate price
     base_price = await calculate_distance(from_location.get("city"), to_location.get("city"), travel_class)
-    total_price = base_price * passenger
+    total_price = int(base_price) * passenger
 
     # Update state with new data
     await h.set_state(BotStates.details, {
