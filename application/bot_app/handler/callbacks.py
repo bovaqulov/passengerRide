@@ -227,3 +227,12 @@ async def rate_callback(call: Union[CallbackQuery, Message], state: StateContext
     await order_api.update_travel(travel_id, {"rate": rate})
     await h.delete()
 
+
+@cb("help")
+async def help_callback(call: Union[CallbackQuery, Message], state: StateContext):
+    h = UltraHandler(call, state)
+    lang = await h.lang()
+    await h.edit(
+        "contact_info",
+        reply_markup=back_inl(lang)
+    )
