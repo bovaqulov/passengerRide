@@ -103,7 +103,7 @@ async def to_location_state_handler(call: [CallbackQuery, Message], state: State
         "travel_class": "standard",
         "passenger": 1,
         "has_woman": False})
-
+    total_price = await calculate_distance(loc_begin.get("city"), to_location.get("city"), tur="standard")
     await h.delete()
     await h.send("trip_details.text",
                  reply_markup=details_inl(lang, 1, False, "standard"),
@@ -111,7 +111,7 @@ async def to_location_state_handler(call: [CallbackQuery, Message], state: State
                  loc_end=await city_api.get_translate(to_location.get("city"), lang),
                  passenger=1,
                  travel_class=t("btn.standard", lang),
-                 price=await calculate_distance(loc_begin.get("city"), to_location.get("city"), tur="standard"),
+                 price=total_price,
                  has_woman="❌ ")
 
 
