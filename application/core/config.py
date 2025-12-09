@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     PROD_API_HOST: str = "http://localhost:8000"  # Default qiymat
 
     # Development defaults
-    HOST_DEMO: str = "127.0.0.1"
+    HOST_DEMO: str = "0.0.0.0"
     PORT_DEMO: int = 8888
     BOT_TOKEN_DEMO: str = "8448377050:AAH5mpmRq4LARRfg6-c-zSiUzMCXcU5tiVo"
     REDIS_URL_DEMO: str = "redis://localhost:6379/0"
