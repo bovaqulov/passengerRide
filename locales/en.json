@@ -105,12 +105,11 @@
   "driver_found_contact": "🚗 <b>Driver Found!</b> 🎉\n\n👤 <b>Name:</b> {name}\n🚙 <b>Car Model:</b> {car_model}\n🔢 <b>Car Number:</b> {car_number}\n\n⏳ Please wait for the driver to contact you 📞",
   "contact_driver": "📞 Contact Driver",
   "active_order": "You have active orders. Please complete them.",
-   "driver_arrived": "🚗 The driver has arrived,\n\n🚘 After getting into the car, please press the \"👉 I'm in the car\" button",
- "find_driver": "<b>✅ Driver found</b>\n\n<b>Driver:</b> {full_name}\n<b>Car:</b> {car_model} | {car_number}\n<b>Phone:</b> {phone}\n<b>Rating:</b> {rating}\n\n<b>Trip:</b> {from_city} → {to_city}\n<b>Passenger:</b> {passenger}\n<b>Price:</b> {price} UZS\n<b>ID:</b> #{order_id}",
-    "in_car": "🚘 I'm in the car",
-
+  "driver_arrived": "🚗 The driver has arrived,\n\n🚘 After getting into the car, please press the \"👉 I'm in the car\" button",
+  "find_driver": "<b>✅ Driver found</b>\n\n<b>Driver:</b> {full_name}\n<b>Car:</b> {car_model} | {car_number}\n<b>Phone:</b> {phone}\n<b>Rating:</b> {rating}\n\n<b>Trip:</b> {from_city} → {to_city}\n<b>Passenger:</b> {passenger}\n<b>Price:</b> {price} UZS\n<b>ID:</b> #{order_id}",
+  "in_car": "🚘 I'm in the car",
   "safe_trip": "🚗 Have a safe trip!\n\nDon't forget to leave feedback after your trip, it's important for us ✅",
-    "rate_trip": "🙏 Thank you for using our services!\n⭐ Please rate your trip, it helps us improve future journeys"
-
+  "rate_trip": "🙏 Thank you for using our services!\n⭐ Please rate your trip, it helps us improve future journeys",
+    "enter_sms_code": "📩 Enter the SMS code sent to your phone number"
 }
 

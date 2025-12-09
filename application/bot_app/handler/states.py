@@ -115,13 +115,13 @@ async def to_location_state_handler(call: [CallbackQuery, Message], state: State
                  has_woman="❌ ")
 
 
-def calculate_distance(shahar1, shahar2, tur="economy"):
-    CITY_PRICES = {
-        "qoqon": {"distance": 230, "economy": 130000, "standard": 200000, "comfort": 230000},
-        "fargona": {"distance": 305, "economy": 180000, "standard": 250000, "comfort": 270000},
-        "namangan": {"distance": 281, "economy": 170000, "standard": 240000, "comfort": 260000},
-        "andijon": {"distance": 345, "economy": 200000, "standard": 270000, "comfort": 290000}
-    }
+async def calculate_distance(shahar1, shahar2, tur="economy"):
+    cities = await CityServiceAPI().get_all_cities()
+
+    result = cities.get("results", {})
+
+    CITY_PRICES = {c.get("title", ""): c.get("price", 0) for c in result if c.get("title", "") != "tashkent"}
+
     # Toshkentdan boshqa shaharga
     if shahar1 == "tashkent" and shahar2 in CITY_PRICES:
         return CITY_PRICES[shahar2][tur]
@@ -160,7 +160,7 @@ async def details_state_handler(call: CallbackQuery, state: StateContext):
         from .callbacks import now_callback
         return await now_callback(call, state)
     elif action[0] == "details_start":
-        base_price = calculate_distance(from_location.get("city"), to_location.get("city"), travel_class)
+        base_price = await calculate_distance(from_location.get("city"), to_location.get("city"), travel_class)
         total_price = base_price * passenger
         data.update({"price": total_price})
         return await confirm_order(call, state, data)
@@ -172,7 +172,7 @@ async def details_state_handler(call: CallbackQuery, state: StateContext):
         travel_class = action[1]
 
     # Calculate price
-    base_price = calculate_distance(from_location.get("city"), to_location.get("city"), travel_class)
+    base_price = await calculate_distance(from_location.get("city"), to_location.get("city"), travel_class)
     total_price = base_price * passenger
 
     # Update state with new data
@@ -278,7 +278,7 @@ async def post_to_location_state_handler(call: CallbackQuery, state: StateContex
     async with state.data() as data:
         from_location = data.get("from_location", {})
 
-    price = int(calculate_distance(from_location.get("city"), to_loc, tur="economy") / 2)
+    price = int(await calculate_distance(from_location.get("city"), to_loc, tur="economy") / 2)
 
     await h.set_state(BotPostStates.confirm, {
         "to_location": to_location,

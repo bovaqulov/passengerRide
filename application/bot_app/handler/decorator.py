@@ -34,6 +34,7 @@ class BotPostStates(StatesGroup):
 
 class BotNumber(StatesGroup):
     contact: State = State()
+    confirm_code: State = State()
 
 # ==================== PERFORMANCE DECORATORS ====================
 
