@@ -40,6 +40,9 @@ async def from_location_state_handler(call: CallbackQuery, state: StateContext):
 
     if isinstance(call, Message):
         if call.location:
+            await h.send(
+                "check_location"
+            )
             result = await city_api.check_location_in_allowed_city(call.location.latitude, call.location.longitude,
                                                                    max_distance_km=45.0)
             if result["success"]:
