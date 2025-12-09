@@ -33,56 +33,59 @@ async def ask_location_post(call, state):
 @state(state=BotStates.from_location)
 async def from_location_state_handler(call: CallbackQuery, state: StateContext):
     from .callbacks import order_callback
-    h = UltraHandler(call, state)
-    lang = await h.lang()
+    try:
+        h = UltraHandler(call, state)
+        lang = await h.lang()
 
-    city_api = CityServiceAPI()
+        city_api = CityServiceAPI()
 
-    if isinstance(call, Message):
-        if call.location:
-            await h.send("check_location")
-            result = await city_api.check_location(call.location.latitude, call.location.longitude,
-                                                                   max_distance_km=45.0)
-            print(result)
+        if isinstance(call, Message):
+            if call.location:
+                await h.send("check_location")
+                result = await city_api.check_location(call.location.latitude, call.location.longitude,
+                                                                       max_distance_km=45.0)
+                print(result)
 
-            if result["success"]:
-                city_name = result['city_name']
-            else:
-                if result["error"] in ["city_not_allowed", "no_city_found"]:
-                    await h.delete()
-                    await h.clear_state()
-                    return await h.send(
-                        "errors.service_not_available",
-                        reply_markup=order_inl(lang)
-                    )
+                if result["success"]:
+                    city_name = result['city_name']
                 else:
-                    city_name = result["nearest_city"]
+                    if result["error"] in ["city_not_allowed", "no_city_found"]:
+                        await h.delete()
+                        await h.clear_state()
+                        return await h.send(
+                            "errors.service_not_available",
+                            reply_markup=order_inl(lang)
+                        )
+                    else:
+                        city_name = result["nearest_city"]
+            else:
+                await h.delete()
+                await h.clear_state()
+                await h.set_state(BotStates.from_location)
+                return await h.send(
+                    "errors.send_exact_location",
+                    reply_markup=await start_inl(lang)
+                )
+
+            from_location = {"city": city_name,
+                             "location": {"latitude": call.location.latitude, "longitude": call.location.longitude}}
+
         else:
-            await h.delete()
-            await h.clear_state()
-            await h.set_state(BotStates.from_location)
-            return await h.send(
-                "errors.send_exact_location",
-                reply_markup=await start_inl(lang)
-            )
+            if call.data.endswith("back"):
+                await h.clear_state()
+                return await order_callback(call, state)
 
-        from_location = {"city": city_name,
-                         "location": {"latitude": call.location.latitude, "longitude": call.location.longitude}}
+            if call.data.endswith("location"):
+                return await ask_location(call, state)
 
-    else:
-        if call.data.endswith("back"):
-            await h.clear_state()
-            return await order_callback(call, state)
+            city = call.data.split("_")[-1]
+            from_location = {"city": city, "location": None}
 
-        if call.data.endswith("location"):
-            return await ask_location(call, state)
-
-        city = call.data.split("_")[-1]
-        from_location = {"city": city, "location": None}
-
-    await h.set_state(BotStates.to_location, {"from_location": from_location})
-    await h.delete(count=2)
-    return await h.send("travel_end.text", reply_markup=await start_inl(lang, from_location.get("city"), location=False))
+        await h.set_state(BotStates.to_location, {"from_location": from_location})
+        await h.delete(count=2)
+        return await h.send("travel_end.text", reply_markup=await start_inl(lang, from_location.get("city"), location=False))
+    except Exception as ex:
+        print(ex)
 
 
 @state(state=BotStates.to_location)

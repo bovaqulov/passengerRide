@@ -1,5 +1,26 @@
 {
   'is_in_city': False,
+  'city': {
+    'id': 1,
+    'title': 'qoqon',
+    'price': {
+      'economy': 150000.0,
+      'comfort': 170000.0,
+      'standard': 160000.0
+    },
+    'translate': {
+      'en': 'Qoqon',
+      'ru': 'Qoqon',
+      'uz': "Qo'qon"
+    },
+    'subcategory': None,
+    'latitude': 40.539151,
+    'longitude': 70.940425,
+    'is_allowed': True,
+    'created_at': '2025-12-05T23:24:31.234794Z',
+    'updated_at': '2025-12-09T21:14:02.477761Z'
+  },
+  'distance_km': 2.22,
   'address_info': {
     'source': 'nominatim',
     'display_name': "Bandi Yeshon ko'chasi, Qoʻqon shahri, Farg'ona Viloyati, 150700, Oʻzbekiston",
@@ -8,7 +29,7 @@
     'viloyat': "Farg'ona Viloyati",
     'full_address': "Qoʻqon shahri, Farg'ona Viloyati",
     'raw': {
-      'place_id': 199360702,
+      'place_id': 199605024,
       'licence': 'Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright',
       'osm_type': 'way',
       'osm_id': 27729377,
@@ -40,6 +61,6 @@
     'lat': 40.524194,
     'lon': 70.932915
   },
-  'message': 'Koordinatalar hech qanday shahar hududida emas va yaqin shaharlar topilmadi',
-  'match_type': 'none'
+  'message': 'Koordinatalar hech qanday shahar hududida emas. Eng yaqin shahar: qoqon (2.2 km)',
+  'match_type': 'nearest'
 }
