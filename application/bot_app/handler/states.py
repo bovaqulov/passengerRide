@@ -42,17 +42,15 @@ async def from_location_state_handler(call: CallbackQuery, state: StateContext):
         if isinstance(call, Message):
             if call.location:
                 await h.send("check_location")
-                result = await city_api.check_location(call.location.latitude, call.location.longitude,
+                result = await city_api.check_location_in_allowed_city(call.location.latitude, call.location.longitude,
                                                                        max_distance_km=45.0)
-                print(result)
-
                 if result["success"]:
                     city_name = result['city_name']
                 else:
                     if result["error"] in ["city_not_allowed", "no_city_found"]:
                         await h.delete()
                         await h.clear_state()
-                        return await h.send(
+                        return h.send(
                             "errors.service_not_available",
                             reply_markup=order_inl(lang)
                         )
@@ -232,6 +230,7 @@ async def post_from_location_state_handler(call: CallbackQuery, state: StateCont
 
     if isinstance(call, Message):
         if call.location:
+            await h.send("check_location")
             result = await city_api.check_location_in_allowed_city(call.location.latitude, call.location.longitude,
                                                                    max_distance_km=45.0)
             if result["success"]:
