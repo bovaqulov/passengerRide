@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     BOT_TOKEN_PROD: str = ""
     AUTH_TOKEN: str = ""
     WEBHOOK_URL_PROD: str = ""
-    HOST_PROD: str = "127.0.0.1"  # Default qiymat
+    HOST_PROD: str = "0.0.0.0"  # Default qiymat
     PROD_API_HOST: str = "http://localhost:8000"  # Default qiymat
 
     # Development defaults
