@@ -142,60 +142,64 @@ async def calculate_distance(shahar1, shahar2, tur="economy"):
 
 @state(state=BotStates.details)
 async def details_state_handler(call: CallbackQuery, state: StateContext):
-    h = UltraHandler(call, state)
-    lang = await h.lang()
+    try:
+        h = UltraHandler(call, state)
+        lang = await h.lang()
 
-    city_api = CityServiceAPI()
+        city_api = CityServiceAPI()
 
-    async with state.data() as data:
-        from_location = data.get("from_location", {})
-        to_location = data.get("to_location", {})
-        travel_class = data.get("travel_class", "standard")
-        passenger = data.get("passenger", 1)
-        has_woman = data.get("has_woman", False)
+        async with state.data() as data:
+            from_location = data.get("from_location", {})
+            to_location = data.get("to_location", {})
+            travel_class = data.get("travel_class", "standard")
+            passenger = data.get("passenger", 1)
+            has_woman = data.get("has_woman", False)
 
-    action = call.data.split(":")
+        action = call.data.split(":")
 
-    if action[0] == "back_details":
-        await h.clear_state()
-        from .callbacks import now_callback
-        return await now_callback(call, state)
-    elif action[0] == "details_start":
+        if action[0] == "back_details":
+            await h.clear_state()
+            from .callbacks import now_callback
+            return await now_callback(call, state)
+        elif action[0] == "details_start":
+            base_price = await calculate_distance(from_location.get("city"), to_location.get("city"), travel_class)
+            total_price = int(base_price) * passenger
+            data.update({"price": total_price})
+            return await confirm_order(call, state, data)
+        elif action[0] == "passenger":
+            passenger = int(action[1])
+        elif action[0] == "has_woman":
+            has_woman = action[1].lower() == "true"
+        elif action[0] == "travel_class":
+            travel_class = action[1]
+
+        # Calculate price
         base_price = await calculate_distance(from_location.get("city"), to_location.get("city"), travel_class)
+
         total_price = int(base_price) * passenger
-        data.update({"price": total_price})
-        return await confirm_order(call, state, data)
-    elif action[0] == "passenger":
-        passenger = int(action[1])
-    elif action[0] == "has_woman":
-        has_woman = action[1].lower() == "true"
-    elif action[0] == "travel_class":
-        travel_class = action[1]
 
-    # Calculate price
-    base_price = await calculate_distance(from_location.get("city"), to_location.get("city"), travel_class)
-    total_price = int(base_price) * passenger
+        # Update state with new data
+        await h.set_state(BotStates.details, {
+            "from_location": from_location,
+            "to_location": to_location,
+            "travel_class": travel_class,
+            "passenger": passenger,
+            "has_woman": has_woman,
+            "price": total_price,
+        })
 
-    # Update state with new data
-    await h.set_state(BotStates.details, {
-        "from_location": from_location,
-        "to_location": to_location,
-        "travel_class": travel_class,
-        "passenger": passenger,
-        "has_woman": has_woman,
-        "price": total_price,
-    })
-
-    await h.edit(
-        "trip_details.text",
-        reply_markup=details_inl(lang, passenger, has_woman, travel_class),
-        loc_begin=await city_api.get_translate(from_location.get("city"), lang),
-        loc_end=await city_api.get_translate(to_location.get("city"), lang),
-        passenger=passenger,
-        travel_class=t(f"btn.{travel_class}", lang),
-        price=total_price,
-        has_woman="✅" if has_woman else "❌"
-    )
+        await h.edit(
+            "trip_details.text",
+            reply_markup=details_inl(lang, passenger, has_woman, travel_class),
+            loc_begin=await city_api.get_translate(from_location.get("city"), lang),
+            loc_end=await city_api.get_translate(to_location.get("city"), lang),
+            passenger=passenger,
+            travel_class=t(f"btn.{travel_class}", lang),
+            price=total_price,
+            has_woman="✅" if has_woman else "❌"
+        )
+    except Exception as e:
+        print(e)
 
 
 async def confirm_order(call: CallbackQuery, state: StateContext, data: dict):
