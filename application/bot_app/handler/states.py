@@ -104,7 +104,7 @@ async def to_location_state_handler(call: [CallbackQuery, Message], state: State
         "passenger": 1,
         "has_woman": False})
 
-    total_price = await calculate_distance(loc_begin.get("city"), to_location.get("city"), tur="standard")
+    total_price = float(await calculate_distance(loc_begin.get("city"), to_location.get("city"), tur="standard"))
     await h.delete()
     await h.send("trip_details.text",
                  reply_markup=details_inl(lang, 1, False, "standard"),
@@ -162,7 +162,7 @@ async def details_state_handler(call: CallbackQuery, state: StateContext):
             from .callbacks import now_callback
             return await now_callback(call, state)
         elif action[0] == "details_start":
-            base_price = await calculate_distance(from_location.get("city"), to_location.get("city"), travel_class)
+            base_price = float(await calculate_distance(from_location.get("city"), to_location.get("city"), travel_class))
             total_price = int(base_price) * passenger
             data.update({"price": total_price})
             return await confirm_order(call, state, data)
@@ -176,7 +176,7 @@ async def details_state_handler(call: CallbackQuery, state: StateContext):
         # Calculate price
         base_price = await calculate_distance(from_location.get("city"), to_location.get("city"), travel_class)
 
-        total_price = int(base_price) * passenger
+        total_price = int(float(base_price)) * passenger
 
         # Update state with new data
         await h.set_state(BotStates.details, {
@@ -283,7 +283,7 @@ async def post_to_location_state_handler(call: CallbackQuery, state: StateContex
     async with state.data() as data:
         from_location = data.get("from_location", {})
 
-    price = int(await calculate_distance(from_location.get("city"), to_loc, tur="economy") / 2)
+    price = int(float(await calculate_distance(from_location.get("city"), to_loc, tur="economy")) / 2)
 
     await h.set_state(BotPostStates.confirm, {
         "to_location": to_location,
