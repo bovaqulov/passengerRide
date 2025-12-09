@@ -17,9 +17,7 @@ class Travel:
     updated_at: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
-        """Convert Travel instance to dictionary for API requests"""
         data = asdict(self)
-        # Remove None values and read-only fields for creation/update
         if self.id is None:
             data.pop('id', None)
         data.pop('created_at', None)
@@ -178,7 +176,7 @@ class RideService(BaseService):
         Returns:
             List of user's travels
         """
-        return await self._request("GET", "/travels/by_user/", params={"user_id": user_id})
+        return await self._request("GET", f"/travels/by-telegram-id/{user_id}/")
 
     async def bulk_create_travels(self, travels: List[Travel]) -> List[Dict[str, Any]]:
         """

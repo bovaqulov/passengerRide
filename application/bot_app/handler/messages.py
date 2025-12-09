@@ -42,7 +42,6 @@ async def create_user_number(message: types.Message, state: StateContext):
             return await h.send(
                 "Error, Please try again later",
             )
-
     except Exception as e:
         print(e)
 
