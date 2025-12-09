@@ -111,7 +111,7 @@ async def to_location_state_handler(call: [CallbackQuery, Message], state: State
                  loc_end=await city_api.get_translate(to_location.get("city"), lang),
                  passenger=1,
                  travel_class=t("btn.standard", lang),
-                 price=calculate_distance(loc_begin.get("city"), to_location.get("city"), tur="standard"),
+                 price=await calculate_distance(loc_begin.get("city"), to_location.get("city"), tur="standard"),
                  has_woman="❌ ")
 
 
