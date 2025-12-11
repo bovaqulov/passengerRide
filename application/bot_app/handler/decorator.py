@@ -4,7 +4,8 @@ from typing import Any, Optional, Union, Callable, List, Dict
 from functools import wraps, lru_cache
 
 from telebot.states.asyncio import StateContext
-from telebot.types import Message, CallbackQuery, InlineKeyboardMarkup, ReplyKeyboardMarkup, BotCommand
+from telebot.types import Message, CallbackQuery, InlineKeyboardMarkup, ReplyKeyboardMarkup, BotCommand, \
+    ReplyKeyboardRemove
 from telebot.handler_backends import State, StatesGroup
 from application.core.bot import bot
 from application.core.i18n import t
@@ -155,7 +156,7 @@ class UltraHandler:
             self,
             text: str,
             translate: bool = True,
-            reply_markup: Union[InlineKeyboardMarkup, ReplyKeyboardMarkup, None] = None,
+            reply_markup: Union[InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove, None] = None,
             **kwargs
     ) -> Optional[Message]:
         final_text = await self._(text, **kwargs) if translate else text
@@ -199,8 +200,8 @@ class UltraHandler:
         )
 
     @error_handler(send_to_user=False)
-    async def delete(self, count=1) -> bool:
-        message_id = self._get_message_id()
+    async def delete(self, msg_id=None, count=1) -> bool:
+        message_id = self._get_message_id() if not msg_id else msg_id
         return await bot.delete_messages(self.chat_id, list(range(message_id, message_id - count, -1)))
 
     @error_handler(send_to_user=False)

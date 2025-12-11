@@ -2,7 +2,7 @@ from telebot.states.asyncio import StateContext
 from telebot.types import CallbackQuery, Message
 
 from .decorator import UltraHandler, BotStates, BotPostStates, state, cb
-from ..keyboards.inline import start_inl, details_inl, cancel_inl, start_post_inl, cancel_post_inl, location_btn, \
+from ..keyboards.inline import start_inl, details_inl, cancel_inl, start_post_inl, location_btn, \
     order_inl
 from ...core import t, logger
 from ...services.city_service import CityServiceAPI
@@ -43,7 +43,7 @@ async def from_location_state_handler(call: CallbackQuery, state: StateContext):
             if call.location:
                 await h.send("check_location")
                 result = await city_api.check_location_in_allowed_city(call.location.latitude, call.location.longitude,
-                                                                       max_distance_km=45.0)
+                                                                       )
                 if result["success"]:
                     city_name = result['city_name']
                 else:
@@ -232,7 +232,7 @@ async def post_from_location_state_handler(call: CallbackQuery, state: StateCont
         if call.location:
             await h.send("check_location")
             result = await city_api.check_location_in_allowed_city(call.location.latitude, call.location.longitude,
-                                                                   max_distance_km=45.0)
+                                                                   )
             if result["success"]:
                 city_name = result['city_name']
             else:

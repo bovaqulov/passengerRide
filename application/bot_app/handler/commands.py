@@ -1,7 +1,7 @@
 # application/bot_app/handler/commands.py
 
 from telebot.states.asyncio import StateContext
-from telebot.types import Message
+from telebot.types import Message, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from .decorator import cmd, UltraHandler, BotNumber
 from ..keyboards.inline import main_menu_inl, language_inl, phone_number_rb
 from ...services import TelegramUser
@@ -9,10 +9,7 @@ from ...services import TelegramUser
 
 @cmd("start", "Start the bot")
 async def start_command(message: Message, state: StateContext):
-    """Handle /start command"""
     h = UltraHandler(message, state)
-
-    # 1. TelegramUser ni tekshirish yoki yaratish
     user = await TelegramUser().get_user(message.from_user.id)
     if user is None:
         obj = TelegramUser()
@@ -22,7 +19,8 @@ async def start_command(message: Message, state: StateContext):
             "username": message.from_user.username,
         })
 
-    # 2. Passenger ni tekshirish
+    msg_id = await h.send(".", reply_markup=ReplyKeyboardRemove())
+    await h.delete(msg_id=msg_id.id)
     lang = await h.lang()
     await state.delete()
     passenger = await h.get_passenger()

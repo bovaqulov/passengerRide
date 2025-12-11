@@ -257,7 +257,6 @@ class CityServiceAPI(BaseService):
                 })
         return allowed_cities
 
-
     async def get_cities_by_subcategory(self, subcategory: str, lang: str = "uz") -> List[Dict[str, Any]]:
         """Get cities by subcategory"""
         result = await self.get()
@@ -274,8 +273,8 @@ class CityServiceAPI(BaseService):
     async def check_location(self, latitude: float, longitude: float, max_distance_km: float = 10.0) -> Dict[str, Any]:
         """Check if coordinates are within any city area"""
         return await self._request(
-            "POST", 
-            "/cities/check-location/", 
+            "POST",
+            "/cities/check-location/",
             json={
                 "latitude": latitude,
                 "longitude": longitude,
@@ -286,8 +285,8 @@ class CityServiceAPI(BaseService):
     async def validate_city_location(self, city_name: str, latitude: float, longitude: float) -> Dict[str, Any]:
         """Validate if city name matches coordinates"""
         return await self._request(
-            "POST", 
-            "/cities/validate-city-location/", 
+            "POST",
+            "/cities/validate-city-location/",
             json={
                 "city_name": city_name,
                 "latitude": latitude,
@@ -295,7 +294,8 @@ class CityServiceAPI(BaseService):
             }
         )
 
-    async def get_nearby_cities(self, latitude: float, longitude: float, max_distance_km: float = 50.0) -> List[Dict[str, Any]]:
+    async def get_nearby_cities(self, latitude: float, longitude: float, max_distance_km: float = 50.0) -> List[
+        Dict[str, Any]]:
         """Get cities near specified location"""
         return await self._request(
             "POST",
