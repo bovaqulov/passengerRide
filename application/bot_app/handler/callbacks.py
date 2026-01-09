@@ -36,7 +36,7 @@ async def callback_lang(call: CallbackQuery, state: StateContext):
     # Agar passenger bor va telefon raqami bo'lsa
     lang = await h.lang()
     await h.edit(
-        "main_menu.text",
+        "main_menu",
         reply_markup=main_menu_inl(lang),
         name=passenger.full_name or call.from_user.full_name
     )
@@ -69,7 +69,7 @@ async def back_callback(call: CallbackQuery, state):
 
     if len(backs) == 1:
         return await h.edit(
-            "main_menu.text",
+            "main_menu",
             reply_markup=main_menu_inl(lang),
             name=user.full_name)
 
@@ -197,7 +197,8 @@ async def my_trip_callback(call: Union[CallbackQuery, Message], state: StateCont
 
         return await h.edit(
             full_text,
-            reply_markup=back_inl(lang)
+            reply_markup=back_inl(lang),
+            translate=False
         )
 
     except Exception as e:
@@ -226,7 +227,6 @@ async def rate_callback(call: Union[CallbackQuery, Message], state: StateContext
     order_api = RideService()
     await order_api.update_travel(travel_id, {"rate": rate})
     await h.delete()
-
 
 @cb("help")
 async def help_callback(call: Union[CallbackQuery, Message], state: StateContext):

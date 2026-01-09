@@ -46,8 +46,6 @@ async def create_user_number(message: types.Message, state: StateContext):
         print(e)
 
 
-
-
 @msg(content_types=['text', "contact"], state=BotNumber.confirm_code)
 async def confirm_code(message: types.Message, state: StateContext):
     h = UltraHandler(message, state)
@@ -65,7 +63,7 @@ async def confirm_code(message: types.Message, state: StateContext):
 
             await h.delete(count=2)
             return await h.send(
-                "main_menu.text",
+                "main_menu",
                 reply_markup=main_menu_inl(lang),
                 name=message.from_user.full_name
             )

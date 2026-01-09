@@ -4,13 +4,13 @@ from application.services.city_service import CityServiceAPI
 
 
 def main_menu_inl(lang: str):
-    slug = "main_menu.btn"
+
     return (kb(lang)
-            .data(f"{slug}.order", "order")
+            .data(f"order", "order")
             .row()
-            .data(f"{slug}.my_trip", "my_trip")
+            .data(f"my_trip", "my_trip")
             .row()
-            .data(f"{slug}.help", "help")
+            .data(f"help", "help")
             .inline())
 
 
@@ -83,8 +83,6 @@ def details_inl(
 
 
     keyboard.row()
-
-    # Navigatsiya
     keyboard.data("btn.back", "back_details")
     keyboard.data("btn.start", "details_start")
 

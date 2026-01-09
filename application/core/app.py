@@ -14,8 +14,7 @@ from application.services.http_client import GlobalHTTPClient
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Application lifespan manager with proper cleanup"""
-    # Startup
+
     logger.info("🚀 Starting application...")
 
     try:

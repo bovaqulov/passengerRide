@@ -1,4 +1,4 @@
-# application/config.py
+# application/core/config.py
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from functools import lru_cache
@@ -14,17 +14,17 @@ class Settings(BaseSettings):
     BOT_TOKEN_PROD: str = ""
     AUTH_TOKEN: str = ""
     WEBHOOK_URL_PROD: str = ""
-    HOST_PROD: str = "0.0.0.0"  # Default qiymat
-    PROD_API_HOST: str = "http://localhost:8000"  # Default qiymat
+    HOST_PROD: str = "0.0.0.0"
+    PROD_API_HOST: str = "http://localhost:8000"
 
     # Development defaults
     HOST_DEMO: str = "0.0.0.0"
     PORT_DEMO: int = 8888
-    BOT_TOKEN_DEMO: str = "8448377050:AAH5mpmRq4LARRfg6-c-zSiUzMCXcU5tiVo"
+    BOT_TOKEN_DEMO: str = "8567491520:AAFYHdVofwVPhKd-sAqasoIlNu5kSbQe6GE"
     REDIS_URL_DEMO: str = "redis://localhost:6379/0"
 
     # Webhook
-    WEBHOOK_URL_DEMO: str = "123d221b60e0.ngrok-free.app"
+    WEBHOOK_URL_DEMO: str = "0487826bda9d.ngrok-free.app"
 
     # API settings
     API_HOST: str = "0.0.0.0"
@@ -94,9 +94,6 @@ class Settings(BaseSettings):
 
 @lru_cache
 def get_settings() -> Settings:
-    """Get cached settings instance"""
     return Settings()
 
-
-# Global settings instance
 settings = get_settings()

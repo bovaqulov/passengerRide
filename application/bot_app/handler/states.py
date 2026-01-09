@@ -65,8 +65,11 @@ async def from_location_state_handler(call: CallbackQuery, state: StateContext):
                     reply_markup=await start_inl(lang)
                 )
 
-            from_location = {"city": city_name,
-                             "location": {"latitude": call.location.latitude, "longitude": call.location.longitude}}
+            from_location = {
+                "city": city_name,
+                "location":
+                    {"latitude": call.location.latitude,
+                     "longitude": call.location.longitude}}
 
         else:
             if call.data.endswith("back"):
@@ -218,6 +221,7 @@ async def confirm_order(call: CallbackQuery, state: StateContext, data: dict):
         reply_markup=cancel_inl(lang, result.get("order_id")),
     )
     logger.info(f"Created new travel {result}")
+
 
 
 @state(state=BotPostStates.from_location)

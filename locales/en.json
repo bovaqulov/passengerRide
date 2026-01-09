@@ -1,12 +1,8 @@
 {
-  "main_menu": {
-    "text": "Hello, {name}! 👋\n\nWelcome to the main menu! Here you can:\n\n🚖 Request a ride — find a nearby driver and start your journey right away.\n📋 My trips — view your previous rides.\n🆘 Help — contact us if you have a question or issue.",
-    "btn": {
-      "order": "🚖 Request a Ride",
-      "my_trip": "📋 My Trips",
-      "help": "🆘 Help"
-    }
-  },
+  "main_menu": "*Самый надёжный такси-сервис*\n\n>Вызов такси – быстро, удобно и, самое главное, безопасно\\!",
+  "order": "🚖 Сделать заказ",
+  "my_trip": "📋 Мои поездки",
+  "help": "🆘 Помощь",
   "travel_type": {
     "text": "✈️ Choose your travel type:\n\n🚗 Start a ride now — set your destination and get a driver quickly and safely.\n📦 Send a parcel — deliver your package safely between two locations.",
     "btn": {
@@ -112,6 +108,9 @@
   "rate_trip": "🙏 Thank you for using our services!\n⭐ Please rate your trip, it helps us improve future journeys",
   "enter_sms_code": "📩 Enter the SMS code sent to your phone number",
   "contact_info": "For contact: +998 78-113-71-73",
-  "check_location": "Your address is being determined..."
+  "check_location": "Your address is being determined...",
+    "commit": "💬 Add comment",
+    "departure_time": "🕑 Select departure time."
+
 }
 

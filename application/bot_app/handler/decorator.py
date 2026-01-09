@@ -160,12 +160,20 @@ class UltraHandler:
             **kwargs
     ) -> Optional[Message]:
         final_text = await self._(text, **kwargs) if translate else text
-
-        return await bot.send_message(
-            self.chat_id,
-            final_text,
-            reply_markup=reply_markup,
-        )
+        try:
+            return await bot.send_message(
+                self.chat_id,
+                final_text,
+                reply_markup=reply_markup,
+                parse_mode="MarkdownV2",
+            )
+        except Exception as e:
+            print(e)
+            return  await bot.send_message(
+                self.chat_id,
+                final_text,
+                reply_markup=reply_markup,
+            )
 
     @error_handler(send_to_user=False)
     async def reply(
@@ -192,13 +200,22 @@ class UltraHandler:
     ) -> Optional[Message]:
         final_text = await self._(text, **kwargs) if translate else text
         message_id = self._get_message_id()
-        return await bot.edit_message_text(
-            final_text,
-            self.chat_id,
-            message_id,
-            reply_markup=reply_markup
-        )
-
+        try:
+            return await bot.edit_message_text(
+                final_text,
+                self.chat_id,
+                message_id,
+                reply_markup=reply_markup,
+                parse_mode="MarkdownV2",
+            )
+        except Exception as e:
+            print(e)
+            return await bot.edit_message_text(
+                final_text,
+                self.chat_id,
+                message_id,
+                reply_markup=reply_markup
+            )
     @error_handler(send_to_user=False)
     async def delete(self, msg_id=None, count=1) -> bool:
         message_id = self._get_message_id() if not msg_id else msg_id

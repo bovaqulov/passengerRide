@@ -1,12 +1,8 @@
 {
-  "main_menu": {
-    "text": "Salom, {name}! 👋\n\nAsosiy menyuga xush kelibsiz! Bu yerda siz quyidagi amallarni bajarishingiz mumkin:\n\n🚖 Safar buyurtma qilish — yaqin haydovchini toping va darhol yo‘lga chiqing.\n📋 Mening safarlarim — oldingi safarlaringizni ko‘rib chiqing.\n🆘 Yordam — savolingiz yoki muammo bo‘lsa, shu yerga murojaat qiling.",
-    "btn": {
-      "order": "🚖 Buyurtma berish",
-      "my_trip": "📋 Mening safarlarim",
-      "help": "🆘 Yordam"
-    }
-  },
+  "main_menu": "*Eng ishonchli taksi xizmati*\n\n>Taksi chaqirish – tez, qulay va eng muhimi, xavfsiz\\!",
+  "order": "🚖 Buyurtma berish",
+  "my_trip": "📋 Mening safarlarim",
+  "help": "🆘 Yordam",
   "travel_type": {
     "text": "✈️ Sayohat turini tanlang:\n\n🚗 Hozir yo‘lga chiqish — manzilingizni belgilang, haydovchilar sizni tez va xavfsiz yetkazishadi.\n📦 Pochta yuborish — pochtangizni ikki manzil orasida ishonchli tarzda yetkazamiz.",
     "btn": {
@@ -109,6 +105,8 @@
   "rate_trip": "🙏 Xizmatlarimizdan foydalanganingiz uchun rahmat!\n⭐ Sayohatni baholang, bu sayohatlarni yanada yaxshilanishiga yordam beradi",
   "enter_sms_code": "📩 Raqamingizga yuborilgan SMS kodni kiriting",
   "contact_info": "Aloqa uchun: +998 78-113-71-73",
-  "check_location": "Sizning manzilingiz aniqlanmoqda..."
+  "check_location": "Sizning manzilingiz aniqlanmoqda...",
+  "commit": "📝 Izoh qo'shish",
+  "departure_time": "🕐 Safarga chiqish vaqtini tanlang."
 }
 
