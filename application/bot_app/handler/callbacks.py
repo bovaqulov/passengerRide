@@ -59,7 +59,7 @@ async def order_callback(call: Union[CallbackQuery, Message], state):
 
 
 @cb("back")
-async def back_callback(call: CallbackQuery, state):
+async def back_callback(call: CallbackQuery, state: StateContext):
     h = UltraHandler(call, state)
 
     backs = call.data.split("_")
@@ -146,14 +146,13 @@ async def in_car_callback(call: Union[CallbackQuery, Message], state: StateConte
     )
 
 
-
 @cb("cancel_")
 async def cancel_callback(call: Union[CallbackQuery, Message], state: StateContext):
     h = UltraHandler(call, state)
     lang = await h.lang()
     order_id = int(call.data.split("_")[-1])
     await OrderServiceAPI().update_status(order_id, "rejected")
-    await h.send(
+    await h.edit(
         "trip_canceled.text",
         reply_markup=recreate_inl(lang)
     )

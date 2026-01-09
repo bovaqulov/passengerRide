@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from telebot.states.asyncio import StateContext
 from telebot.types import CallbackQuery, Message
 
@@ -213,8 +215,11 @@ async def confirm_order(call: CallbackQuery, state: StateContext, data: dict):
     h = UltraHandler(call, state)
     lang = await h.lang()
     data.update({"user": call.from_user.id})
+    data.update({"start_time": datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%fZ")})
+    data.update({"commit": "darhol"})
+    print(data)
     result = await RideService().create_travel(data)
-
+    print(result)
     await h.clear_state()
     await h.edit(
         "travel_searching_drivers.text",
