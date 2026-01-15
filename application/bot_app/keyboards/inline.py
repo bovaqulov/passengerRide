@@ -1,7 +1,5 @@
 
 from application.bot_app.keyboards.base import kb
-from application.core.i18n import t
-from application.services.route_service import RouteServiceAPI
 
 
 def main_menu_inl(lang: str):

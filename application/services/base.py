@@ -10,7 +10,6 @@ from .http_client import GlobalHTTPClient
 
 
 class BaseService:
-    """Base service for API communication with proper session management"""
 
     def __init__(self):
         self.base_url = f"{settings.MAIN_URL}/{settings.API_VERSION}"
@@ -18,7 +17,6 @@ class BaseService:
         self.http_client = GlobalHTTPClient()
 
     async def ensure_headers(self, headers: Optional[Dict] = None) -> Dict:
-        """Ensure headers include authorization if token exists"""
         headers = headers or {}
         if "Content-Type" not in headers:
             headers["Content-Type"] = "application/json"
@@ -34,17 +32,14 @@ class BaseService:
             endpoint: str,
             **kwargs
     ) -> Dict[str, Any]:
-        """Make async HTTP request with proper resource cleanup"""
         url = f"{self.base_url}{endpoint}"
 
-        # Ensure headers
         if "headers" in kwargs:
             kwargs["headers"] = await self.ensure_headers(kwargs["headers"])
         else:
             kwargs["headers"] = await self.ensure_headers()
 
         try:
-            # Use context manager to ensure response is properly closed
             async with self.http_client.request(method, url, **kwargs) as response:
 
                 content_type = response.headers.get("Content-Type", "").lower()
