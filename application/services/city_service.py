@@ -22,8 +22,7 @@ class CityServiceAPI(BaseService):
         result = await self.get()
         cities = []
         for city in result["results"]:
-            if city["is_allowed"] and city["subcategory"] is None:
-                cities.append([city['title'], city["translate"][lang]])
+            cities.append([city['id'], city["translate"][lang]])
         return cities
 
     async def get_translate(self, city_name: str, lang: str) -> Optional[str]:
@@ -135,7 +134,7 @@ class CityServiceAPI(BaseService):
             # Alternative: get all cities and check
             all_cities = await self.get_all_cities()
             for city in all_cities.get("results", []):
-                if city.get("title", "").lower() == city_name.lower() and city.get("is_allowed", False):
+                if city.get("title", "").lower() == city_name.lower():
                     return True
 
             return False

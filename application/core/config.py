@@ -4,11 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from functools import lru_cache
 from typing import List
 
-
 class Settings(BaseSettings):
-    """Application settings with environment variables"""
-
-    # Required settings with defaults
     DEBUG: bool = True
     REDIS_PUBLIC_URL: str = "redis://localhost:6379/0"
     BOT_TOKEN_PROD: str = ""
@@ -20,11 +16,11 @@ class Settings(BaseSettings):
     # Development defaults
     HOST_DEMO: str = "0.0.0.0"
     PORT_DEMO: int = 8888
-    BOT_TOKEN_DEMO: str = "8567491520:AAFYHdVofwVPhKd-sAqasoIlNu5kSbQe6GE"
+    BOT_TOKEN_DEMO: str = "8533767944:AAE5u4Kpk_7ha4FrCigGDwKGMYk2ayEjQxI"
     REDIS_URL_DEMO: str = "redis://localhost:6379/0"
 
     # Webhook
-    WEBHOOK_URL_DEMO: str = "0487826bda9d.ngrok-free.app"
+    WEBHOOK_URL_DEMO: str = "28493463f9a9.ngrok-free.app"
 
     # API settings
     API_HOST: str = "0.0.0.0"
@@ -90,7 +86,6 @@ class Settings(BaseSettings):
         case_sensitive=True,
         env_nested_delimiter="__"
     )
-
 
 @lru_cache
 def get_settings() -> Settings:

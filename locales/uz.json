@@ -20,7 +20,7 @@
     "text": "🚗 <b>Sayohat tafsilotlari</b>:\n\n📍 <b>Yo‘nalish:</b> {loc_begin} → {loc_end}\n👤 <b>Yo‘lovchilar:</b> {passenger}\n💰 <b>Tarif:</b> {travel_class}\n💸 <b>Narx:</b> {price} so‘m\n👩 <b>Ayol yo‘lovchi:</b> {has_woman}\n\n✅ Agar hammasi to‘g‘ri bo‘lsa — <b>“Boshlash”</b> tugmasini bosing, haydovchilarimizga xabar beraman. 🚀"
   },
   "utils": {
-    "select_language": "🌐 Kerakli tilni tanlang",
+    "select_language": ">🌐 Kerakli tilni tanlang",
     "my_trips_header": "📋 Sizning safarlaringiz ({count} ta):",
     "travel_info": "🚗 {number}. Safar\n📍 Dan: {from_location}\n📍 Gacha: {to_location}\n💰 Narx: {price}\n📅 Sana: {date}\n🔢 Kodi: {code}",
     "no_trips_found": "🤷‍♂️ Hozircha hech qanday safar topilmadi",
@@ -107,6 +107,38 @@
   "contact_info": "Aloqa uchun: +998 78-113-71-73",
   "check_location": "Sizning manzilingiz aniqlanmoqda...",
   "commit": "📝 Izoh qo'shish",
-  "departure_time": "🕐 Safarga chiqish vaqtini tanlang."
+  "departure_time": "🕐 Safarga chiqish vaqtini tanlang.",
+  "note_add": "📝 Izoh qo'shish",
+  "note_skip": "➡️ O'tkazib yuborish",
+  "note_edit": "✏️ Izohni o'zgartirish",
+  "note_prompt": "✍️ Haydovchiga izoh qoldirmoqchimisiz?\n(Masalan: 'Bolam bilan', 'Bagaj bor', 'Telefon qilish kerak')",
+  "note_input_prompt": "✍️ Iltimos, haydovchiga izohingizni yozing:",
+  "note_too_long": "❌ Izoh juda uzun. Iltimos, 200 belgidan kamroq yozing.",
+  "final_confirmation": "✅ Barcha ma'lumotlar to'g'rimi?",
+  "immediately": "Darhol",
+  "in_1_hour": "1 soatdan keyin",
+  "other_time": "📅 Boshqa vaqt",
+  "departure_time_display": "🕐 <b>Chiqish vaqti:</b> {time}",
+  "note_display": "📝 <b>Izoh:</b> {note}",
+  "wrong_time_format": "❌ Noto'g'ri vaqt formati. Iltimos, quyidagi formatda kiriting:\n\nMasalan: 14:30",
+    "🕐_time_template": "🕐 {time}",
+  "🕐_time_with_status": "🕐 {status} {time}",
+  "button_time_now": "⏰ Darhol",
+  "button_time_in_1h": "🕐 1 soatdan keyin",
+  "button_other_time": "📅 Boshqa vaqt",
+  "button_next_page": "⏩ Keyingi sahifa",
+  "button_previous_page": "⏪ Oldingi sahifa",
+
+  "emoji_green": "🟢",
+  "emoji_yellow": "🟡",
+  "emoji_white": "⚪",
+  "time_near": "(yaqin)",
+
+  "passenger_template": "👤 {count}",
+  "female_passenger_template": "👩 Ayol yo‘lovchi {status}",
+  "tariff_template": "{name} {checked}",
+
+  "checkmark": "✅",
+  "empty": ""
 }
 

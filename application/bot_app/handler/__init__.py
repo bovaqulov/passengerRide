@@ -8,7 +8,6 @@ Import all handlers and register them
 from .decorator import (
     UltraHandler,
     HandlerMaster,
-    BotStates,
     cmd, cb, msg, state, err,
     throttle, error_handler, async_lru_cache
 )
@@ -16,7 +15,6 @@ from .decorator import (
 # Import all handler modules
 from .commands import *
 from .messages import *
-from .states import *
 from .callbacks import *
 from .middlewares import *
 
@@ -31,7 +29,6 @@ async def setup_handlers():
 __all__ = [
     'UltraHandler',
     'HandlerMaster',
-    'BotStates',
     'cmd', 'cb', 'msg', 'state', 'err',
     'setup_handlers',
     'throttle', 'error_handler', 'async_lru_cache'

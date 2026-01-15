@@ -1,54 +1,19 @@
 {
-  "main_menu": "*Самый надёжный такси-сервис*\n\n>Вызов такси – быстро, удобно и, самое главное, безопасно\\!",
-  "order": "🚖 Сделать заказ",
-  "my_trip": "📋 Мои поездки",
-  "help": "🆘 Помощь",
-  "travel_type": {
-    "text": "✈️ Choose your travel type:\n\n🚗 Start a ride now — set your destination and get a driver quickly and safely.\n📦 Send a parcel — deliver your package safely between two locations.",
-    "btn": {
-      "now": "🚗 Start a Ride Now",
-      "post": "📦 Send a Parcel"
-    }
-  },
+  "main_menu": "*The Most Reliable Taxi Service*\n\n>Ordering a taxi \\- fast, convenient and most importantly, safe\\!",
+  "order": "🚖 Place Order",
+  "my_trip": "📋 My Trips",
+  "help": "🆘 Help",
   "travel_start": {
-    "text": "📍 Where shall we start your journey?\n\nType or select your city, or send your exact location."
+    "text": "📍 Where will we start the trip?\n\nType the city name where you are, select it, or send your exact location."
   },
   "travel_end": {
-    "text": "📍 Please send your destination or enter one of the selected cities."
+    "text": "📍 Send or enter your destination address, or select one of the listed cities."
   },
   "trip_details": {
-    "text": "🚗 <b>Trip details</b>:\n\n📍 <b>Route:</b> {loc_begin} → {loc_end}\n👤 <b>Passengers:</b> {passenger}\n💰 <b>Class:</b> {travel_class}\n💸 <b>Price:</b> {price} UZS\n👩 <b>Female passenger:</b> {has_woman}\n\n✅ If everything looks correct — press <b>“Start”</b> and I’ll notify our drivers. 🚀",
-    "btn": {
-      "free_car": "🚖 Free car"
-    }
-  },
-  "travel_searching_drivers": {
-    "text": "🚘 Searching for nearby drivers..."
-  },
-  "errors": {
-    "location": "❌ Please send a precise location.",
-    "location_not_found": "⚠️ Location not detected.\n\nPlease resend your location or share another nearby place that’s convenient for you.",
-    "not_location_send": "📍 Please send your location or enter one of the selected cities.",
-    "validation_error": "❌ Validation error",
-    "text_required": "📝 Please enter some text.",
-    "text_too_short": "❌ The text is too short.",
-    "text_too_long": "❌ The text is too long.",
-    "invalid_format": "❌ Invalid format.",
-    "phone_required": "📞 Please enter a phone number.",
-    "invalid_phone": "❌ Invalid phone number.",
-    "number_required": "🔢 Please enter a number.",
-    "invalid_number": "❌ Invalid number.",
-    "number_too_small": "❌ The number is too small.",
-    "number_too_large": "❌ The number is too large.",
-    "city_not_found": "❌ City not found.",
-    "unknown_city": "❌ Unknown city.",
-    "invalid_input": "❌ Invalid input.",
-    "same_city": "⚠️ The locations you entered are too close or in the same city. Please send them again.",
-    "service_not_available": "😔 We do not provide service in the area you sent yet. Sorry for the inconvenience!",
-    "send_exact_location": "📍 Please send your exact location."
+    "text": "🚗 <b>Trip Details</b>:\n\n📍 <b>Route:</b> {loc_begin} → {loc_end}\n👤 <b>Passengers:</b> {passenger}\n💰 <b>Tariff:</b> {travel_class}\n💸 <b>Price:</b> {price} som\n👩 <b>Female passenger:</b> {has_woman}\n\n✅ If everything is correct — click <b>\"Start\"</b> button, I'll notify our drivers. 🚀"
   },
   "utils": {
-    "select_language": "🌐 Select your language",
+    "select_language": ">🌐 Select preferred language",
     "my_trips_header": "📋 Your trips ({count}):",
     "travel_info": "🚗 {number}. Trip\n📍 From: {from_location}\n📍 To: {to_location}\n💰 Price: {price}\n📅 Date: {date}\n🔢 Code: {code}",
     "no_trips_found": "🤷‍♂️ No trips found yet",
@@ -56,13 +21,39 @@
     "error_loading_trips": "❌ Error loading trips"
   },
   "languages": {
-    "uz": "🇺🇿 O‘zbek tili",
-    "ru": "🇷🇺 Русский язык",
+    "uz": "🇺🇿 Uzbek",
+    "ru": "🇷🇺 Russian",
     "en": "🇬🇧 English"
+  },
+  "errors": {
+    "location": "❌ Please send an exact address.",
+    "location_not_found": "⚠️ Location not found.\n\nPlease resend your location or send another convenient address.",
+    "not_location_send": "📍 Please send your location or enter one of the listed cities.",
+    "validation_error": "❌ Validation error",
+    "text_required": "📝 Please enter text",
+    "text_too_short": "❌ Text is too short",
+    "text_too_long": "❌ Text is too long",
+    "invalid_format": "❌ Invalid format",
+    "phone_required": "📞 Please enter phone number",
+    "invalid_phone": "❌ Invalid phone number",
+    "number_required": "🔢 Please enter a number",
+    "invalid_number": "❌ Invalid number",
+    "number_too_small": "❌ Number is too small",
+    "number_too_large": "❌ Number is too large",
+    "city_not_found": "❌ City not found",
+    "unknown_city": "❌ Unknown city",
+    "invalid_input": "❌ Invalid information",
+    "same_city": "⚠️ The addresses you entered are too close or in the same city. Please resend.",
+    "service_not_available": "😔 We don't currently provide service in the area you sent. Sorry for the inconvenience!",
+    "send_exact_location": "📍 Please send your exact location."
   },
   "ask_phone_number": {
     "text": "📱 Please leave your phone number for contact!",
     "btn": "📲 Send your phone number"
+  },
+  "send_location": "📍 Send location",
+  "travel_searching_drivers": {
+    "text": "🚘 Searching for nearby drivers ..."
   },
   "btn": {
     "back": "⬅️ Back",
@@ -74,43 +65,40 @@
     "restart": "🔄 Restart"
   },
   "trip_canceled": {
-    "text": "❌ The trip has been canceled.\nWould you like to start again?"
+    "text": "❌ Trip canceled.\nWould you like to restart?"
   },
   "parcel_destination": {
-    "text": "📦 Select the destination where the parcel will be delivered!"
+    "text": "📦 Select the delivery address for the parcel!"
   },
   "parcel_pickup": {
-    "text": "📦 Select the address where the parcel will be received!"
+    "text": "📦 Select the pickup address for the parcel!"
   },
   "delivery_price_confirm": {
-    "text": "💰 Delivery price: {price} UZS\n\n▶️ Press Start and we will send a driver to you!"
+    "text": "💰 Delivery price: {price} som\n\n▶️ Click Start button, we'll send you a driver!"
   },
   "parcel_fast_pickup": {
-    "text": "⏱ We will send a car shortly to pick up your parcel."
+    "text": "⏱ We'll send you a vehicle to pick up the parcel shortly."
   },
   "order_canceled": {
-    "text": "❌ Canceled.\nWould you like to place a new order?"
+    "text": "❌ Canceled.\nWould you like to reorder?"
   },
-  "passenger_account": "👥 Passenger account",
+  "passenger_account": "👥 Passenger count",
   "female_passenger": "👩 Female passenger",
   "yes": "👍 Yes",
   "no": "❌ No",
-  "taxi_types": "🚖 Types of taxi",
+  "taxi_types": "🚖 Taxi types",
   "location_request": "Send your exact location so we can find you!",
-  "send_location": "📍 Send location",
-  "driver_found_contact": "🚗 <b>Driver Found!</b> 🎉\n\n👤 <b>Name:</b> {name}\n🚙 <b>Car Model:</b> {car_model}\n🔢 <b>Car Number:</b> {car_number}\n\n⏳ Please wait for the driver to contact you 📞",
-  "contact_driver": "📞 Contact Driver",
-  "active_order": "You have active orders. Please complete them.",
-  "driver_arrived": "🚗 The driver has arrived,\n\n🚘 After getting into the car, please press the \"👉 I'm in the car\" button",
-  "find_driver": "<b>✅ Driver found</b>\n\n<b>Driver:</b> {full_name}\n<b>Car:</b> {car_model} | {car_number}\n<b>Phone:</b> {phone}\n<b>Rating:</b> {rating}\n\n<b>Trip:</b> {from_city} → {to_city}\n<b>Passenger:</b> {passenger}\n<b>Price:</b> {price} UZS\n<b>ID:</b> #{order_id}",
+  "contact_driver": "📞 Contact driver",
+  "driver_found_contact": "🚗 <b>Driver found!</b> 🎉\n\n👤 <b>Name:</b> {name}\n🚙 <b>Car model:</b> {car_model}\n🔢 <b>Car number:</b> {car_number}\n\n⏳ Please wait for the driver to contact you 📞",
+  "active_order": "You have active orders. Please complete them first.",
+  "find_driver": "<b>✅ Driver found</b>\n\n<b>Driver:</b> {full_name}\n<b>Car:</b> {car_model} | {car_number}\n<b>Phone:</b> {phone}\n<b>Rating:</b> {rating}\n\n<b>Trip:</b> {from_city} → {to_city}\n<b>Passenger:</b> {passenger}\n<b>Price:</b> {price} som\n<b>ID:</b> #{order_id}",
+  "driver_arrived": "🚗 Driver has arrived,\n\n🚘 Click \"👉 I'm in the car\" button after getting in the car",
   "in_car": "🚘 I'm in the car",
-  "safe_trip": "🚗 Have a safe trip!\n\nDon't forget to leave feedback after your trip, it's important for us ✅",
-  "rate_trip": "🙏 Thank you for using our services!\n⭐ Please rate your trip, it helps us improve future journeys",
-  "enter_sms_code": "📩 Enter the SMS code sent to your phone number",
-  "contact_info": "For contact: +998 78-113-71-73",
-  "check_location": "Your address is being determined...",
-    "commit": "💬 Add comment",
-    "departure_time": "🕑 Select departure time."
-
+  "safe_trip": "🚗 Have a safe trip!\n\nDon't forget to leave feedback when the trip ends, it's important for us ✅",
+  "rate_trip": "🙏 Thank you for using our services!\n⭐ Rate your trip, this helps improve future journeys",
+  "enter_sms_code": "📩 Enter the SMS code sent to your number",
+  "contact_info": "Contact: +998 78-113-71-73",
+  "check_location": "Your address is being identified...",
+  "commit": "📝 Add comment",
+  "departure_time": "🕐 Select departure time."
 }
-

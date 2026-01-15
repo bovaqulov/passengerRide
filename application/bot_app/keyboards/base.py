@@ -51,9 +51,9 @@ class SimpleKeyboard:
         """Callback data tugma"""
         return self.ib(text, data=data)
 
-    def web_app(self, text: str, web_app_url: WebAppInfo) -> 'SimpleKeyboard':
+    def web_app(self, text: str, web_app_url: str) -> 'SimpleKeyboard':
         """Web app tugma"""
-        self._current_inline_row.append(InlineButton(text, web_app=web_app_url))
+        self._current_inline_row.append(InlineButton(text, web_app=WebAppInfo(web_app_url)))
         return self
 
     # ============ REPLY TUGMALAR ============
@@ -103,9 +103,7 @@ class SimpleKeyboard:
     def inline(self, row_width: int = 2) -> InlineKeyboardMarkup:
         """Inline keyboard yasash"""
         self._finalize_rows()
-
         markup = InlineKeyboardMarkup(row_width=row_width)
-
         for row in self._inline_rows:
             buttons = []
             for btn in row:

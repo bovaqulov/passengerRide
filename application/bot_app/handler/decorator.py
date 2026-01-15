@@ -17,22 +17,6 @@ from application.services.user_service import TelegramUser, UserService
 # Admin IDs - environment variables dan olish kerak
 ADMINS: List[int] = []
 
-
-# ==================== STATE CLASSES ====================
-
-class BotStates(StatesGroup):
-    """Bot davlatlari - TeleBot native states"""
-    from_location: State = State()
-    to_location: State = State()
-    details: State = State()
-
-class BotPostStates(StatesGroup):
-    from_location: State = State()
-    to_location: State = State()
-    confirm: State = State()
-
-
-
 class BotNumber(StatesGroup):
     contact: State = State()
     confirm_code: State = State()

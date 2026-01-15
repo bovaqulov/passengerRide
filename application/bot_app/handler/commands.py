@@ -1,7 +1,7 @@
 # application/bot_app/handler/commands.py
 
 from telebot.states.asyncio import StateContext
-from telebot.types import Message, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telebot.types import Message, ReplyKeyboardRemove
 from .decorator import cmd, UltraHandler, BotNumber
 from ..keyboards.inline import main_menu_inl, language_inl, phone_number_rb
 from ...services import TelegramUser
