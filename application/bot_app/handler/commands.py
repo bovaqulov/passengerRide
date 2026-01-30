@@ -27,11 +27,9 @@ async def start_command(message: Message, state: StateContext):
         passenger = await h.get_passenger()
 
         if not passenger:
-            # Agar passenger yo'q bo'lsa, telefon raqam so'rash
-            await h.set_state(BotNumber.contact)
             return await h.send(
-                "ask_phone_number.text",
-                reply_markup=phone_number_rb(lang=lang)
+                "utils.select_language",
+                reply_markup=language_inl(lang=lang)
             )
 
         # 3. Agar passenger bor bo'lsa, asosiy menyu

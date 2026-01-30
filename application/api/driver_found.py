@@ -7,7 +7,6 @@ from application.core import bot, t
 async def driver_response(request):
     notify = await request.body()
     data = json.loads(notify)
-    print(data)
     driver = data.get('driver_details', {})
     car = driver.get('cars', [])[0]
     content_object = data.get('content_object', {})
