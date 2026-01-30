@@ -2,6 +2,7 @@ import re
 
 from telebot import types
 from telebot.states.asyncio import StateContext
+from telebot.types import ReplyKeyboardRemove
 
 from application.bot_app.handler import msg, UltraHandler
 from application.bot_app.handler.decorator import BotNumber
@@ -37,7 +38,7 @@ async def create_user_number(message: types.Message, state: StateContext):
                                   "phone": number
                               }
                               )
-            return await h.send("enter_sms_code")
+            return await h.send("enter_sms_code", reply_markup=ReplyKeyboardRemove())
         else:
             return await h.send(
                 "Error, Please try again later",
