@@ -24,28 +24,28 @@ async def start_command(message: Message, state: StateContext):
         await h.delete(msg_id=msg_id.id)
         lang = await h.lang()
         await state.delete()
-        passenger = await h.get_passenger()
-
-        if not passenger:
-            return await h.send(
-                "utils.select_language",
-                reply_markup=language_inl(lang=lang)
-            )
-
-        # 3. Agar passenger bor bo'lsa, asosiy menyu
-        if not passenger.phone:
-            # Telefon raqam yo'q bo'lsa
-            await h.set_state(BotNumber.contact)
-            return await h.send(
-                "ask_phone_number.text",
-                reply_markup=phone_number_rb(lang=lang)
-            )
+        # passenger = await h.get_passenger()
+        #
+        # if not passenger:
+        #     return await h.send(
+        #         "utils.select_language",
+        #         reply_markup=language_inl(lang=lang)
+        #     )
+        #
+        # # 3. Agar passenger bor bo'lsa, asosiy menyu
+        # if not passenger.phone:
+        #     # Telefon raqam yo'q bo'lsa
+        #     await h.set_state(BotNumber.contact)
+        #     return await h.send(
+        #         "ask_phone_number.text",
+        #         reply_markup=phone_number_rb(lang=lang)
+        #     )
 
         # 4. Hamma narsa to'g'ri bo'lsa
         await h.send(
             "main_menu",
             reply_markup=main_menu_inl(lang),
-            name=passenger.full_name or message.from_user.full_name
+            name=message.from_user.full_name
         )
     except Exception as err:
         print(err)

@@ -18,24 +18,24 @@ async def callback_lang(call: CallbackQuery, state: StateContext):
     main_lang = call.data.split("_")[-1]
     await TelegramUser().update_user(telegram_id=call.from_user.id, update_data={"language": main_lang})
 
-    # Passenger ni tekshirish
-    passenger_api = PassengerServiceAPI()
-    passenger = await passenger_api.get_by_user(call.from_user.id)
-
-    if not passenger or not passenger.phone:
-        await h.delete()
-        await h.set_state(BotNumber.contact)
-        return await h.send(
-            "ask_phone_number.text",
-            reply_markup=phone_number_rb(lang=main_lang)
-        )
+    # # Passenger ni tekshirish
+    # passenger_api = PassengerServiceAPI()
+    # passenger = await passenger_api.get_by_user(call.from_user.id)
+    #
+    # if not passenger or not passenger.phone:
+    #     await h.delete()
+    #     await h.set_state(BotNumber.contact)
+    #     return await h.send(
+    #         "ask_phone_number.text",
+    #         reply_markup=phone_number_rb(lang=main_lang)
+    #     )
 
     # Agar passenger bor va telefon raqami bo'lsa
     lang = await h.lang()
     await h.edit(
         "main_menu",
         reply_markup=main_menu_inl(lang),
-        name=passenger.full_name or call.from_user.full_name
+        name=call.from_user.full_name
     )
 
 @cb("back")
